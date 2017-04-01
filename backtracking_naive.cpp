@@ -37,26 +37,31 @@ struct numero {
 };
 
 // Devuelve la minima cantidad sin pintar posible
-int backtrack(int i, 
-		int ultimoRojo, int ultimoAzul, int cantSinPintar) {
+int backtrack(int actual, int ultimoRojo, int ultimoAzul, int cantSinPintar) {
 	
-	if (i == (int)numeros.size()) {
+	// Caso base, ya no hay mas numeros para pintar
+	if (actual == (int)numeros.size()) {
 		return cantSinPintar;
 	}
 	
 	int minimo = INFINITO;
 	
-	if (ultimoRojo == -1 || numeros[i] > numeros[ultimoRojo]) {
-		int minConRojo = backtrack(i+1, i, ultimoAzul, cantSinPintar);
+	// Pinto de rojo solo si el numero es mayor al anterior rojo
+	// (Los rojos deben ser estrictamente crecientes)
+	if (ultimoRojo == -1 || numeros[actual] > numeros[ultimoRojo]) {
+		int minConRojo = backtrack(actual+1, actual, ultimoAzul, cantSinPintar);
 		minimo = std::min(minimo, minConRojo);
 	}
 	
-	if (ultimoAzul == -1 || numeros[i] < numeros[ultimoAzul]) {
-		int minConAzul = backtrack(i+1, ultimoRojo, i, cantSinPintar);
+	// Pinto de azul solo si el numero es menor al anterior azul
+	// (Los azules deben ser estrictamente decrecientes)
+	if (ultimoAzul == -1 || numeros[actual] < numeros[ultimoAzul]) {
+		int minConAzul = backtrack(actual+1, ultimoRojo, actual, cantSinPintar);
 		minimo = std::min(minimo, minConAzul);
 	}
 	
-	int minSinPintar = backtrack(i+1, ultimoRojo, ultimoAzul, cantSinPintar + 1);
+	// No pinto al numero de ningun color 
+	int minSinPintar = backtrack(actual+1, ultimoRojo, ultimoAzul, cantSinPintar+1);
 	minimo = std::min(minimo, minSinPintar);
 	
 	return minimo;
