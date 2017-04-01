@@ -63,18 +63,14 @@ int backtrack(int i,
 }
 
 int main() {
-	
-	// numeros es global para evitar pasar el vector en cada llamado
-	
-	numeros.resize(0);
-	numeros.push_back(0);
-	numeros.push_back(7);
-	numeros.push_back(1);
-	numeros.push_back(2);
-	numeros.push_back(2);
-	numeros.push_back(1);
-	numeros.push_back(5);
-	numeros.push_back(0);
+	int n;
+	std::cin >> n;
+
+	// numeros es global para evitar pasar el vector cada vezs
+	numeros.resize(n);
+	for (int i = 0; i < n; i++) {
+		std::cin >> numeros[i];
+	}
 	
 	std::cout << backtrack(0, -1, -1, 0) << "\n";
 	
