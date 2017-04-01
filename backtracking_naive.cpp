@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 
 /*
  *  En realidad nada de esto es necesario,
@@ -8,6 +9,11 @@
  *  De todos modos quiza este bueno quedarmelo para poder debugguear
  * 
  */
+ 
+#define INFINITO INT_MAX;
+
+std::vector<int> numeros;
+
 
 enum Color { 
 	Azul, Rojo, Ninguno
@@ -30,13 +36,47 @@ struct numero {
 	Color color;
 };
 
-int 
+// Devuelve la minima cantidad sin pintar posible
+int backtrack(int i, 
+		int ultimoRojo, int ultimoAzul, int cantSinPintar) {
+	
+	if (i == (int)numeros.size()) {
+		return cantSinPintar;
+	}
+	
+	int minimo = INFINITO;
+	
+	if (ultimoRojo == -1 || numeros[i] > numeros[ultimoRojo]) {
+		int minConRojo = backtrack(i+1, i, ultimoAzul, cantSinPintar);
+		minimo = std::min(minimo, minConRojo);
+	}
+	
+	if (ultimoAzul == -1 || numeros[i] < numeros[ultimoAzul]) {
+		int minConAzul = backtrack(i+1, ultimoRojo, i, cantSinPintar);
+		minimo = std::min(minimo, minConAzul);
+	}
+	
+	int minSinPintar = backtrack(i+1, ultimoRojo, ultimoAzul, cantSinPintar + 1);
+	minimo = std::min(minimo, minSinPintar);
+	
+	return minimo;
+}
 
 int main() {
 	
-	numero uno(1);
+	// numeros es global para evitar pasar el vector en cada llamado
 	
-	std::cout << uno.num << " " << uno.color << "\n";
+	numeros.resize(0);
+	numeros.push_back(0);
+	numeros.push_back(7);
+	numeros.push_back(1);
+	numeros.push_back(2);
+	numeros.push_back(2);
+	numeros.push_back(1);
+	numeros.push_back(5);
+	numeros.push_back(0);
+	
+	std::cout << backtrack(0, -1, -1, 0) << "\n";
 	
 	return 0;
 }
