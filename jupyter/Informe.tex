@@ -70,6 +70,12 @@
 \usepackage{newtxtext,newtxmath}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{color}
+
+\definecolor{babyblue}{rgb}{0.54, 0.81, 0.94}
+\definecolor{junglegreen}{rgb}{0.16, 0.67, 0.53}
 
 \author{Jonathan Seijo}
 \date{}
@@ -307,30 +313,48 @@ la solucion con poda
 \Procedure{MyProcedure}{}
 \State $\textit{stringlen} \gets \text{length of }\textit{string}$
 \State $i \gets \textit{patlen}$
-\BState \emph{top}:
 \If {$i > \textit{stringlen}$} \Return false
 \EndIf
 \State $j \gets \textit{patlen}$
 \BState \emph{loop}:
 \If {$\textit{string}(i) = \textit{path}(j)$}
 \State $j \gets j-1$.
-\State $i \gets i-1$.
-\State \textbf{goto} \emph{loop}.
-\State \textbf{close};
 \EndIf
 \State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
-\State \textbf{goto} \emph{top}.
 \EndProcedure
+
 \end{algorithmic}
 \end{algorithm}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
-\end{Verbatim}
+    \subsection{Complejidad}\label{complejidad}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
-\end{Verbatim}
+Aca va la explicacion de cual seria la complejidad del algoritmo
+presentado, con su correspondiente justificacion y eso.
+
+$O(n\log{}n)$
+
+$O(3^{n})$
+
+    \subsection{Codigo fuente}\label{codigo-fuente}
+
+Ejemplo de como seria la insercion de codigo fuente. Hacerlo al final
+cuando el tp este completo
+
+    \lstset{language=C++,
+                keywordstyle=\color{blue},
+                stringstyle=\color{red},
+                commentstyle=\color{junglegreen},
+                morecomment=[l][\color{babyblue}]{\#}
+}
+
+\begin{lstlisting}
+    #include<iostream>
+    // Aca tiene que estar el codigo fuente
+    int main() {
+        std::cout << "Hello World\n";
+        return 0;
+    }
+\end{lstlisting}
 
 
     % Add a bibliography block to the postdoc

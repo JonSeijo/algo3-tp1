@@ -6,6 +6,12 @@
 \usepackage{newtxtext,newtxmath}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{color}
+
+\definecolor{babyblue}{rgb}{0.54, 0.81, 0.94}
+\definecolor{junglegreen}{rgb}{0.16, 0.67, 0.53}
 
 \author{Jonathan Seijo}
 \date{}
