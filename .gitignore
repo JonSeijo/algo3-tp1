@@ -1,4 +1,4 @@
-*
-!*.*
-!Makefile
+backtrack
+backtrack_naive
+Makefile
 *.o
