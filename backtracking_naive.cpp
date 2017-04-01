@@ -1,6 +1,14 @@
 #include <iostream>
 #include <vector>
 
+/*
+ *  En realidad nada de esto es necesario,
+ *  Porque no mee estan pidiendo ningun resultado, solo el minimo
+ * 
+ *  De todos modos quiza este bueno quedarmelo para poder debugguear
+ * 
+ */
+
 enum Color { 
 	Azul, Rojo, Ninguno
 };
@@ -21,6 +29,8 @@ struct numero {
 	int num;
 	Color color;
 };
+
+int 
 
 int main() {
 	
