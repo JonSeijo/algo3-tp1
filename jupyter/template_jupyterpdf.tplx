@@ -6,4 +6,8 @@
 \usepackage{newtxtext,newtxmath}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
+
+\author{Jonathan Seijo}
+\date{}
+
 ((* endblock packages *))

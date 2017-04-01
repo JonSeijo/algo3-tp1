@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.4.2)  1 APR 2017 18:29
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.4.2)  1 APR 2017 18:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**jupyter/test.tex
-(./jupyter/test.tex
+**jupyter/informe.tex
+(./jupyter/informe.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -699,59 +699,61 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 269.
-Package hyperref Info: Option `colorlinks' set `true' on input line 269.
- (jupyter/test.aux)
-\openout1 = `test.aux'.
+Package hyperref Info: Option `breaklinks' set `true' on input line 272.
+Package hyperref Info: Option `colorlinks' set `true' on input line 272.
+ (jupyter/informe.aux)
+\openout1 = `informe.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 276.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 279.
 LaTeX Font Info:    Try loading font information for OML+ntxmi on input line 27
-6.
- (/usr/share/texlive/texmf-dist/tex/latex/newtx/omlntxmi.fd
+9.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2012/03/22 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 276.
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 276.
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 276.
+LaTeX Font Info:    ... okay on input line 279.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 279.
+LaTeX Font Info:    ... okay on input line 279.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 279.
+LaTeX Font Info:    ... okay on input line 279.
+LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 279.
 LaTeX Font Info:    Try loading font information for OMS+ntxsy on input line 27
-6.
- (/usr/share/texlive/texmf-dist/tex/latex/newtx/omsntxsy.fd
+9.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/omsntxsy.fd
 File: omsntxsy.fd 2012/11/14 Fontinst v1.933 font definitions for OMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 276.
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 276.
-LaTeX Font Info:    Try loading font information for U+ntxexa on input line 276
+LaTeX Font Info:    ... okay on input line 279.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 279.
+LaTeX Font Info:    ... okay on input line 279.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 279.
+LaTeX Font Info:    Try loading font information for U+ntxexa on input line 279
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 276.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 276.
+LaTeX Font Info:    ... okay on input line 279.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 279.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 279.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 276.
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 276.
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Try loading font information for T1+ntxrx on input line 276
+LaTeX Font Info:    ... okay on input line 279.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 279.
+LaTeX Font Info:    ... okay on input line 279.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 279.
+LaTeX Font Info:    ... okay on input line 279.
+LaTeX Font Info:    Try loading font information for T1+ntxrx on input line 279
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxrx.fd
 File: t1ntxrx.fd 2012/12/25 v1.0
 )
 LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
-(Font)              scaled to size 10.95pt on input line 276.
+(Font)              scaled to size 10.95pt on input line 279.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -829,7 +831,7 @@ Package caption Info: End \AtBeginDocument code.
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
 \AtBeginShipoutBox=\box42
-Package hyperref Info: Link coloring ON on input line 276.
+Package hyperref Info: Link coloring ON on input line 279.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -839,106 +841,104 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count147
 )
-LaTeX Info: Redefining \ref on input line 276.
-LaTeX Info: Redefining \pageref on input line 276.
-LaTeX Info: Redefining \nameref on input line 276.
+LaTeX Info: Redefining \ref on input line 279.
+LaTeX Info: Redefining \pageref on input line 279.
+LaTeX Info: Redefining \nameref on input line 279.
 
-(jupyter/test.out) (jupyter/test.out)
+(jupyter/informe.out) (jupyter/informe.out)
 \@outlinefile=\write4
-\openout4 = `test.out'.
+\openout4 = `informe.out'.
 
 \c@mv@tabular=\count148
 \c@mv@boldtabular=\count149
 LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
-(Font)              scaled to size 17.28pt on input line 280.
+(Font)              scaled to size 17.28pt on input line 283.
 LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
-(Font)              scaled to size 12.0pt on input line 280.
+(Font)              scaled to size 12.0pt on input line 283.
 LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
-(Font)              scaled to size 8.8pt on input line 280.
+(Font)              scaled to size 8.8pt on input line 283.
 LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
-(Font)              scaled to size 6.6pt on input line 280.
-LaTeX Font Info:    Try loading font information for U+ntxsya on input line 280
+(Font)              scaled to size 6.6pt on input line 283.
+LaTeX Font Info:    Try loading font information for U+ntxsya on input line 283
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsya.fd
 File: untxsya.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsya.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyb on input line 280
+LaTeX Font Info:    Try loading font information for U+ntxsyb on input line 283
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyb.fd
 File: untxsyb.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyb.
 )
-LaTeX Font Info:    Try loading font information for U+ntxmia on input line 280
+LaTeX Font Info:    Try loading font information for U+ntxmia on input line 283
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 280
+LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 283
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-
-LaTeX Warning: No \author given.
-
 LaTeX Font Info:    Font shape `T1/ntxrx/bx/n' will be
-(Font)              scaled to size 12.0pt on input line 284.
+(Font)              scaled to size 12.0pt on input line 287.
 LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 291.
+(Font)              scaled to size 8.0pt on input line 294.
 LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
-(Font)              scaled to size 6.1pt on input line 291.
+(Font)              scaled to size 6.1pt on input line 294.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 301.
+put line 304.
 LaTeX Font Info:    Font shape `T1/ntxrx/bx/n' will be
-(Font)              scaled to size 10.95pt on input line 301.
-LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
-(Font)              scaled to size 9.0pt on input line 303.
-LaTeX Font Info:    Font shape `T1/ntxrx/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 303.
-LaTeX Font Info:    Font shape `T1/ntxrx/m/it' will be
 (Font)              scaled to size 10.95pt on input line 304.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 9.0pt on input line 306.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/sc' will be
+(Font)              scaled to size 10.95pt on input line 306.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/it' will be
+(Font)              scaled to size 10.95pt on input line 307.
+
 ! Undefined control sequence.
 \BState ->\State \algbackskip 
                               
-l.306 \BState
+l.309 \BState
               \emph{top}:
 ? 
 ! Undefined control sequence.
 \BState ->\State \algbackskip 
                               
-l.310 \BState
+l.313 \BState
               \emph{loop}:
 ? 
-LaTeX Font Info:    Try loading font information for T1+ntxtt on input line 323
+LaTeX Font Info:    Try loading font information for T1+ntxtt on input line 326
 .
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtt.fd
 File: t1ntxtt.fd 2012/04/20 v3.1
 )
 LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
-(Font)              scaled to size 10.95pt on input line 323.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 336.
+(Font)              scaled to size 10.95pt on input line 326.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 339.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 336.
- (jupyter/test.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 336.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 336.
-Package rerunfilecheck Info: File `test.out' has not changed.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 339.
+ (jupyter/informe.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 339.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 339.
+Package rerunfilecheck Info: File `informe.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 336.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 339.
  ) 
 Here is how much of TeX's memory you used:
  11957 strings out of 493304
- 176528 string characters out of 6139872
- 275283 words of memory out of 5000000
+ 176567 string characters out of 6139872
+ 275287 words of memory out of 5000000
  15140 multiletter control sequences out of 15000+600000
  63274 words of font info for 110 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 36i,6n,66p,389b,474s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,6n,66p,392b,474s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type
@@ -947,7 +947,7 @@ fonts/t1xtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on jupyter/test.pdf (1 page, 44720 bytes).
+Output written on jupyter/informe.pdf (1 page, 45080 bytes).
 PDF statistics:
  58 PDF objects out of 1000 (max. 8388607)
  46 compressed objects within 1 object stream
