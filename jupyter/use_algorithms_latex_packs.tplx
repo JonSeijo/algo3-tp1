@@ -1,0 +1,9 @@
+((*- extends 'article.tplx' -*))
+
+((* block packages *))
+((( super() )))
+\usepackage{amsmath}
+\usepackage{newtxtext,newtxmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+((* endblock packages *))
