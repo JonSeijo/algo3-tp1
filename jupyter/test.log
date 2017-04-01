@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.4.2)  1 APR 2017 18:01
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.4.2)  1 APR 2017 18:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**test.tex
-(./test.tex
+**jupyter/test.tex
+(./jupyter/test.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -701,7 +701,7 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 )
 Package hyperref Info: Option `breaklinks' set `true' on input line 269.
 Package hyperref Info: Option `colorlinks' set `true' on input line 269.
- (./test.aux)
+ (jupyter/test.aux)
 \openout1 = `test.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 276.
@@ -718,8 +718,7 @@ LaTeX Font Info:    ... okay on input line 276.
 LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 276.
 LaTeX Font Info:    Try loading font information for OMS+ntxsy on input line 27
 6.
-
-(/usr/share/texlive/texmf-dist/tex/latex/newtx/omsntxsy.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/omsntxsy.fd
 File: omsntxsy.fd 2012/11/14 Fontinst v1.933 font definitions for OMS/ntxsy.
 )
 LaTeX Font Info:    ... okay on input line 276.
@@ -844,7 +843,7 @@ LaTeX Info: Redefining \ref on input line 276.
 LaTeX Info: Redefining \pageref on input line 276.
 LaTeX Info: Redefining \nameref on input line 276.
 
-(./test.out) (./test.out)
+(jupyter/test.out) (jupyter/test.out)
 \@outlinefile=\write4
 \openout4 = `test.out'.
 
@@ -925,25 +924,21 @@ Package atveryend Info: Empty hook `BeforeClearDocument' on input line 336.
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 336.
- (./test.aux)
+ (jupyter/test.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 336.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 336.
 Package rerunfilecheck Info: File `test.out' has not changed.
-(rerunfilecheck)             Checksum: 87F606944C879C962988E3CD4A90B8CA;111.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+(rerunfilecheck)             Checksum: <no file>.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 336.
  ) 
 Here is how much of TeX's memory you used:
- 11956 strings out of 493304
- 176432 string characters out of 6139872
- 275245 words of memory out of 5000000
+ 11957 strings out of 493304
+ 176528 string characters out of 6139872
+ 275283 words of memory out of 5000000
  15140 multiletter control sequences out of 15000+600000
  63274 words of font info for 110 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 36i,6n,66p,381b,474s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,6n,66p,389b,474s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type
@@ -952,7 +947,7 @@ fonts/t1xtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on test.pdf (1 page, 44720 bytes).
+Output written on jupyter/test.pdf (1 page, 44720 bytes).
 PDF statistics:
  58 PDF objects out of 1000 (max. 8388607)
  46 compressed objects within 1 object stream

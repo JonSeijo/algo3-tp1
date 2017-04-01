@@ -10,8 +10,11 @@ notebook_name = "test"
 notebook_path = "jupyter/" + notebook_name
 
 convert_jupyter_command = "jupyter nbconvert " + notebook_path  + ".ipynb" +  " --to latex " + "--template " + template_file
-make_pdf_command = "pdflatex " + notebook_path + ".tex"
+make_pdf_command = "pdflatex " + "-output-directory jupyter " + notebook_path + ".tex"
+
+move_pdf_command = "mv " + notebook_path + ".pdf " + notebook_name + ".pdf"
 
 subprocess.call(convert_jupyter_command.split())
 subprocess.call(make_pdf_command.split())
+subprocess.call(move_pdf_command.split())
 
