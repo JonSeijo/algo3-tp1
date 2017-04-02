@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include <climits>
 
 #define INFINITO INT_MAX;
@@ -79,15 +80,14 @@ int backtrack(int actual, std::vector<numero> &numeros, int ultimoRojo, int ulti
     return minimo;
 }
 
-int main() {
-    int n;
-    std::cin >> n;
+int main(int argc, char *argv[]) {
+    int n = atoi(argv[1]);
 
-    std::vector<numero> numeros;
-
-    numeros.resize(n, numero(0));
+    std::vector<numero> numeros(n, 0);
+    
     for (int i = 0; i < n; i++) {
-        std::cin >> numeros[i].num;
+        std::string dato = argv[i+2];
+        numeros[i].num = std::stoi(dato);
     }
     
     std::cout << backtrack(0, numeros, -1, -1, 0) << "\n";
