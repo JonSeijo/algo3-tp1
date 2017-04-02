@@ -24,18 +24,16 @@ Todo esto esta muy verde, ver las clases de labo para darse una idea de como res
 
 ## INFORME:
 
-La compilacion del informe se hace de foma automatica con un script que convierte del formato de jupyter
-Esto es asi para poder insertar paquetes de latex que no se encuentran en el engine de jupyter
-(En particular algorithms para el pseudocodigo)
+Todos los archivos .tex del informe estan en /informe/
 
-La caratula entonces es inexistente por ser una compilacion automatica.
-En la entrega final, puede hacerse alindarse editando a mano el archivo Informe.tex dentro de jupyter/
-
-Comandos para compilar y ver el informe:
+Para compilar el .tex:
 
 ```
-python makepdf.py
+pdflatex informe.tex
+```
 
-evince Informe.pdf
+Para ejecutar:
 
+```
+evince informe.pdf
 ```
