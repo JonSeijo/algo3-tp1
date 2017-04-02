@@ -22,7 +22,7 @@ std::ostream& operator<<(std::ostream& os, Color c) {
 }
 
 
-bool valido(std::vector<int> &numeros, std::vector<Color> &colores) {
+bool valido(std::vector<Color> &colores) {
     int n = (int)numeros.size();
     int ultimoRojo = -1;
     int ultimoAzul = -1;
@@ -49,46 +49,47 @@ bool valido(std::vector<int> &numeros, std::vector<Color> &colores) {
 }
 
 // Devuelve la minima cantidad sin pintar posible
-int backtrack(int actual, std::vector<Color> &colores,
+int backtrack_naive(int actual, std::vector<Color> &colores,
              int ultimoRojo, int ultimoAzul, int cantSinPintar) {
     
     // Caso base, ya no hay mas numeros para pintar
     if (actual == (int)numeros.size()) {
-        return valido(numeros, colores) ? cantSinPintar : INFINITO;
+        return valido(colores) ? cantSinPintar : INFINITO;
     }
     
     int minimo = INFINITO;
     
     // Pinto de rojo
     colores[actual] = Rojo;
-    int minConRojo = backtrack(actual+1, colores, actual, ultimoAzul, cantSinPintar);
+    int minConRojo = backtrack_naive(actual+1, colores, actual, ultimoAzul, cantSinPintar);
     minimo = std::min(minimo, minConRojo);
     
     // Pinto de azul 
     colores[actual] = Azul;
-    int minConAzul = backtrack(actual+1, colores, ultimoRojo, actual, cantSinPintar);
+    int minConAzul = backtrack_naive(actual+1, colores, ultimoRojo, actual, cantSinPintar);
     minimo = std::min(minimo, minConAzul);
     
     // No pinto 
     colores[actual] = Ninguno;
-    int minSinPintar = backtrack(actual+1, colores, ultimoRojo, ultimoAzul, cantSinPintar+1);
+    int minSinPintar = backtrack_naive(actual+1, colores, ultimoRojo, ultimoAzul, cantSinPintar+1);
     minimo = std::min(minimo, minSinPintar);
     
     return minimo;
 }
 
-int main(int argc, char *argv[]) {
-    int n = atoi(argv[1]);
-
-    numeros.resize(n, 0);
+int resolver_backtracking_naive(int n, std::vector<int> &numeros) {
     std::vector<Color> colores(n, Ninguno);
-
-    for (int i = 0; i < n; i++) {
-        std::string dato = argv[i+2];
-        numeros[i] = std::stoi(dato);
-    }
-    
-    std::cout << backtrack(0, colores, -1, -1, 0) << "\n";
-    
-    return 0;
+    return backtrack_naive(0, colores, -1, -1, 0);
 }
+
+// int main(int argc, char *argv[]) {
+//     int n = atoi(argv[1]);
+//     numeros.resize(n, 0);
+//     for (int i = 0; i < n; i++) {
+//         std::string dato = argv[i+2];
+//         numeros[i] = std::stoi(dato);
+//     }
+//     std::cout << resolver_backtracking_naive(n, numeros) << "\n";
+    
+//     return 0;
+// }
