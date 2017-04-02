@@ -1,13 +1,24 @@
 CPP=g++
 FLAGS=-std=c++11
 
-backtrack: backtracking.cpp
-	$(CPP) $(FLAGS) -o backtrack backtracking.cpp
+tiempo: tiempo.cpp backtracking_naive.o backtracking_poda.o
+	$(CPP) $(FLAGS) -o $@ $<
 
-backtrack_naive: backtracking_naive.cpp
-	$(CPP) $(FLAGS) -o backtrack_naive backtracking_naive.cpp
+solucion: solucion.cpp
+	$(CPP) $(FLAGS) -o $@ $< 
 
-all: backtrack 
+# backtrack_poda: backtracking_poda.cpp
+# 	$(CPP) $(FLAGS) -o backtrack_poda backtracking_poda.cpp
+
+# backtrack_naive: backtracking_naive.cpp
+# 	$(CPP) $(FLAGS) -o backtrack_naive backtracking_naive.cpp
+
+%.o: %.cpp
+	$(CPP) $(FLAGS) -c -o $@ $<
+
+all: tiempo 
 
 clean:
 	rm -f *.o
+	rm tiempo
+
