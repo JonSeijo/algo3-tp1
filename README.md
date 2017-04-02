@@ -58,27 +58,51 @@ evince informe.pdf
 
 # TODO
 
+
 [X] Uso de argv como entrada
+
 [X] Separacion de backtracking naive y con poda
+
 [X] .cpp de backtracking no usen main
+
 [X] Crear un archivo definiciones
+
 [X] Crear un ejecutable para medir tiempos
+
 [X] Crear un ejecutable para verificar soluciones
+
 [X] Armar makefile
+
 [-] Mejorar el algoritmo de bt poda haciendo que corte la solucion si tengo mas sinPintar que el minimo que consegui al momento (Tendria que tener una especie de minimo global por mas feo que suene, para no morir con el tema de los parametros) 
+
 [-] Hacer testeos mas complejos !
+
 [-] Crear carpeta para csv
+
 [-] Que tiempos escriba archivos csv
+
 [-] Crear script de python generador que ejecute ./tiempos
+
 [-] Pensar como organizar los experimentos
+
 [-] Que el script de python pueda generar instancias al azar de tamaño n
+
 [-] Que el script de python pueda repetir la misma instancia r veces
+
 [-] Ver como analizar las complejidades (Es incorrecto hacer una comparacion tiempos/curvas)
+
 [-] Armar introduccion/explicacion del problema
+
 [-] Pensar mas ejemplos para agregar
+
 [-] Agregar imagen a la caratula
+
 [-] Hacer analisis de complejidades
+
 [-] ¿Es posible que el backtracking de poda no sea exponencial en mejor caso? Analizar eso 
+
 [-] Preguntar bien que significa el item 2)
+
 [-] Resolver usando DP bottomup
+
 [-] Resolver usando DP topdown
