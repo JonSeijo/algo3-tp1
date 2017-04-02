@@ -9,14 +9,24 @@ Aca un breve descripcion del workflow
 ## PROGRAMAS
 
 Cada algoritmo para resolver un problema se encuentra en su propio .cpp
-Hay makefiles para todo algoritmo, para simplificar
+Todos leen por consola una serie de argumentos
 
-Todos (en teoria) leen por consola una serie de argumentos
+Para ver solo la solucion del problema (para todos los algoritmos) compilar con
+```
+make solucion
+```
+y ejecutar con ./solucion
 
+Esto esta bueno para poder chequear que todos los algoritmos devuelvan el mismo resultado para la misma entrada.
+Es necesario hace un chequeo mas exhaustivo y revisando esto es la herramienta ideal.
+
+
+Para tener los datos de tiempo para cada algoritmo, compilar usando
 ```
-make backtrack
-make backtrack_naive
+make tiempos
 ```
+y ejecutar con ./tiempos
+
 
 ## DATOS (WIP): 
 
@@ -55,6 +65,7 @@ evince informe.pdf
 |- Crear un ejecutable para medir tiempos
 |- Crear un ejecutable para verificar soluciones
 |- Armar makefile
+- Mejorar el algoritmo de bt poda haciendo que corte la solucion si tengo mas sinPintar que el minimo que consegui al momento (Tendria que tener una especie de minimo global por mas feo que suene, para no morir con el tema de los parametros) 
 - Hacer testeos mas complejos !
 - Crear carpeta para csv
 - Que tiempos escriba archivos csv
