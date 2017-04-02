@@ -1,6 +1,7 @@
 #include "definiciones.cpp"
 #include "backtracking_naive.cpp"
 #include "backtracking_poda.cpp"
+#include <stdlib.h>
 #include <chrono>
 
 // NOTA: Si quiero muchas ejecuciones para la misma entrada, 

@@ -1,6 +1,3 @@
-#include <iostream>
-#include <vector>
-#include <string>
 #include <climits>
 
 #define INFINITO INT_MAX;

@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <string>
 
 enum Color { 
     Azul, Rojo, Ninguno
