@@ -5,6 +5,8 @@
 
 #define INFINITO INT_MAX;
 
+std::vector<int> numeros;
+
 enum Color { 
     Azul, Rojo, Ninguno
 };
@@ -19,30 +21,24 @@ std::ostream& operator<<(std::ostream& os, Color c) {
     return os;
 }
 
-// Un numero es un entero con un color asociado
-struct numero {
-    numero(int numIn) : num(numIn), color(Ninguno) {}
-    int num;
-    Color color;
-};
 
-bool valido(std::vector<numero> numeros) {
+bool valido(std::vector<int> &numeros, std::vector<Color> &colores) {
     int n = (int)numeros.size();
     int ultimoRojo = -1;
     int ultimoAzul = -1;
     for (int i = 0; i < n; i++) {
-        if (numeros[i].color == Rojo) {
+        if (colores[i] == Rojo) {
             if (ultimoRojo != -1) {
-                if (numeros[ultimoRojo].num >= numeros[i].num) {
+                if (numeros[ultimoRojo] >= numeros[i]) {
                     return false;
                 }
             }
             ultimoRojo = i;
         }
 
-        if (numeros[i].color == Azul) {
+        if (colores[i] == Azul) {
             if (ultimoAzul != -1) {
-                if (numeros[ultimoAzul].num <= numeros[i].num) {
+                if (numeros[ultimoAzul] <= numeros[i]) {
                     return false;
                 }
             }
@@ -53,28 +49,29 @@ bool valido(std::vector<numero> numeros) {
 }
 
 // Devuelve la minima cantidad sin pintar posible
-int backtrack(int actual, std::vector<numero> &numeros, int ultimoRojo, int ultimoAzul, int cantSinPintar) {
+int backtrack(int actual, std::vector<Color> &colores,
+             int ultimoRojo, int ultimoAzul, int cantSinPintar) {
     
     // Caso base, ya no hay mas numeros para pintar
     if (actual == (int)numeros.size()) {
-        return valido(numeros) ? cantSinPintar : INFINITO;
+        return valido(numeros, colores) ? cantSinPintar : INFINITO;
     }
     
     int minimo = INFINITO;
     
     // Pinto de rojo
-    numeros[actual].color = Rojo;
-    int minConRojo = backtrack(actual+1, numeros, actual, ultimoAzul, cantSinPintar);
+    colores[actual] = Rojo;
+    int minConRojo = backtrack(actual+1, colores, actual, ultimoAzul, cantSinPintar);
     minimo = std::min(minimo, minConRojo);
     
     // Pinto de azul 
-    numeros[actual].color = Azul;
-    int minConAzul = backtrack(actual+1, numeros, ultimoRojo, actual, cantSinPintar);
+    colores[actual] = Azul;
+    int minConAzul = backtrack(actual+1, colores, ultimoRojo, actual, cantSinPintar);
     minimo = std::min(minimo, minConAzul);
     
     // No pinto 
-    numeros[actual].color = Ninguno;
-    int minSinPintar = backtrack(actual+1, numeros, ultimoRojo, ultimoAzul, cantSinPintar+1);
+    colores[actual] = Ninguno;
+    int minSinPintar = backtrack(actual+1, colores, ultimoRojo, ultimoAzul, cantSinPintar+1);
     minimo = std::min(minimo, minSinPintar);
     
     return minimo;
@@ -83,14 +80,15 @@ int backtrack(int actual, std::vector<numero> &numeros, int ultimoRojo, int ulti
 int main(int argc, char *argv[]) {
     int n = atoi(argv[1]);
 
-    std::vector<numero> numeros(n, 0);
-    
+    numeros.resize(n, 0);
+    std::vector<Color> colores(n, Ninguno);
+
     for (int i = 0; i < n; i++) {
         std::string dato = argv[i+2];
-        numeros[i].num = std::stoi(dato);
+        numeros[i] = std::stoi(dato);
     }
     
-    std::cout << backtrack(0, numeros, -1, -1, 0) << "\n";
+    std::cout << backtrack(0, colores, -1, -1, 0) << "\n";
     
     return 0;
 }
