@@ -43,18 +43,14 @@ es correr la herramienta graficadora una unica vez
 
 ## INFORME:
 
+Para compilar y ver el informe (incluso desde el directorio principal)
+
+```
+python makepdf.py
+```
+
 Todos los archivos .tex del informe estan en /informe/
 
-Para compilar el .tex:
-
-```
-pdflatex informe.tex
-```
-
-Para ejecutar:
-```
-evince informe.pdf
-```
 
 # TODO
 
