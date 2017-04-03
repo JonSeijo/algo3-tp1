@@ -1,12 +1,14 @@
 #include <climits>
 
 #define INFINITO INT_MAX;
+int backtrack_poda_minimo_global = INFINITO;
 
 // Devuelve la minima cantidad sin pintar posible
 int backtrack_poda(const std::vector<int> &numeros, int actual, int ultimoRojo, int ultimoAzul, int cantSinPintar) {
 
     // Caso base, ya no hay mas numeros para pintar
     if (actual == (int)numeros.size()) {
+        backtrack_poda_minimo_global = cantSinPintar;
         return cantSinPintar;
     }
 
@@ -27,8 +29,10 @@ int backtrack_poda(const std::vector<int> &numeros, int actual, int ultimoRojo, 
     }
 
     // No pinto al numero de ningun color
-    int minSinPintar = backtrack_poda(numeros, actual+1, ultimoRojo, ultimoAzul, cantSinPintar+1);
-    minimo = std::min(minimo, minSinPintar);
+    if (cantSinPintar+1 < backtrack_poda_minimo_global) {
+        int minSinPintar = backtrack_poda(numeros, actual+1, ultimoRojo, ultimoAzul, cantSinPintar+1);
+        minimo = std::min(minimo, minSinPintar);
+    }
 
     return minimo;
 }
