@@ -102,3 +102,8 @@ Todos los archivos .tex del informe estan en /informe/
 [-] Resolver usando DP bottomup
 
 [-] Resolver usando DP topdown
+
+[-] Armar ejecutables de ejX para cumplir consigna de tp. 
+(Basicamente quiero poder hacer "make ej1" y "./ej1 [params]" )
+
+[-] Cota superior del informe: 10 paginas
