@@ -69,11 +69,13 @@ Todos los archivos .tex del informe estan en /informe/
 
 [X] Armar makefile
 
-[-] Mejorar el algoritmo de bt poda haciendo que corte la solucion si tengo mas sinPintar que el minimo que consegui al momento (Tendria que tener una especie de minimo global por mas feo que suene, para no morir con el tema de los parametros) 
+[X] Mejorar el algoritmo de bt poda haciendo que corte la solucion si tengo mas sinPintar que el minimo que consegui al momento (Tendria que tener una especie de minimo global por mas feo que suene, para no morir con el tema de los parametros) 
 
 [-] Hacer testeos mas complejos !
 
-[-] Crear carpeta para csv
+[X] cpp de tiempos da los nanosegundos para cada algoritmo, dado una instancia
+
+[X] Crear carpeta para csv
 
 [-] Que tiempos escriba archivos csv
 
