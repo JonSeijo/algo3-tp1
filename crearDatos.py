@@ -3,6 +3,8 @@
 import argparse
 import random
 import subprocess
+import time
+
 from sys import argv
 from subprocess import call
 
@@ -14,7 +16,7 @@ path_poda = "datos/poda/"
 path_random_cercanos = "random_cercanos.csv"
 path_random_lejanos = "random_lejanos.csv"
 
-repes = 10
+repes = 25
 
 def args_naive_lista_random(ejec, tam, tope):
     return [ejec, "naive", str(tam)] + [str(random.randrange(1, tope+1)) for _ in range(tam)]
@@ -22,9 +24,12 @@ def args_naive_lista_random(ejec, tam, tope):
 def exp_naive_random_cercanos():
     tope = 20
     with open(path_naive + path_random_cercanos, 'w') as f:
-        for tam in range(1, 10):
+        for tam in range(1, 16):   # Instancias de tamaño n
+            print("Instancias random de tamaño: " + str(tam))
             print("\nn:" + str(tam), file=f)
-            for r in range(repes):
+            for r in range(repes):   
+                # Repito repes veces las pruebas con cada tamaño 
+                # (instancias aleatorias cada vez) para ver mejor el caso promedio
                 output = subprocess.check_output(args_naive_lista_random(ejecutable, tam, tope))
                 print(str(output.decode()), file=f, end=""),
 
@@ -40,10 +45,16 @@ if __name__ == '__main__':
     repes = args.repes
 
     if args.naive_random_cercanos:
+        print("Inicia: exp_naive_random_cercanos")
+        start_time = time.time()
         exp_naive_random_cercanos()
+        print("--- %s seconds ---" % (time.time() - start_time))
 
-    if args.naive_random_lejanos:
+    if args.naive_random_lejanos:   
+        print("Inicia: exp_naive_random_lejanos")
+        start_time = time.time()
         exp_naive_random_lejanos()
+        print("--- %s seconds ---" % (time.time() - start_time))
 
 
 
