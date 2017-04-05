@@ -13,8 +13,7 @@ ejecutable = "./tiempos"
 path_naive = "datos/naive/"
 path_poda = "datos/poda/"
 
-path_random_cercanos = "random_cercanos.csv"
-path_random_lejanos = "random_lejanos.csv"
+path_random = "random.csv"
 
 tipo_naive = "naive"
 tipo_poda = "poda"
@@ -53,11 +52,11 @@ if __name__ == '__main__':
     if args.naive_random:
         print("Inicia: exp_naive_random")
         start_time = time.time()
-        exp_random(tipo_naive, path_naive +  path_random_cercanos, n_maximo_naive)
+        exp_random(tipo_naive, path_naive +  path_random, n_maximo_naive)
         print("--- %s seconds ---" % (time.time() - start_time))
 
     if args.poda_random:
-        print("Inicia: exp_naive_random_cercanos")
+        print("Inicia: exp_poda_random")
         start_time = time.time()
-        exp_random(tipo_poda, path_poda + path_random_cercanos, n_maximo_poda)
+        exp_random(tipo_poda, path_poda + path_random, n_maximo_poda)
         print("--- %s seconds ---" % (time.time() - start_time))
