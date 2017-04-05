@@ -25,11 +25,8 @@ def exp_naive_random_cercanos():
         for tam in range(1, 10):
             print("\nn:" + str(tam), file=f)
             for r in range(repes):
-                # print("n: " + str(tam) + "   r: " + str(r), file=f)
                 output = subprocess.check_output(args_naive_lista_random(ejecutable, tam, tope))
-                #   print(output)  #Hay un b misterioso
                 print(str(output.decode()), file=f, end=""),
-                # call(args_naive_lista_random(ejecutable, tam, tope), stdout=f)
 
 
 if __name__ == '__main__':
