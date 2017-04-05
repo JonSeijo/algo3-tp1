@@ -16,13 +16,18 @@ path_poda = "datos/poda/"
 path_random_cercanos = "random_cercanos.csv"
 path_random_lejanos = "random_lejanos.csv"
 
+tipo_naive = "naive"
+tipo_poda = "poda"
+tipo_topdown = "topdown"
+tipo_bottomup = "bottomup"
+
 repes = 25
 n_maximo = 15
 
-def args_naive_lista_random(ejec, tam, tope):
-    return [ejec, "naive", str(tam)] + [str(random.randrange(1, tope+1)) for _ in range(tam)]
+def args_lista_random(tipo, tam, tope):
+    return [ejecutable, tipo, str(tam)] + [str(random.randrange(1, tope+1)) for _ in range(tam)]
 
-def exp_naive_random(archivo, tope):
+def exp_random(tipo, archivo, tope):
     with open(path_naive + archivo, 'w') as f:
         for tam in range(1, n_maximo+1):   # Instancias de tamaño n
             print("Instancias random de tamaño: " + str(tam))
@@ -30,7 +35,7 @@ def exp_naive_random(archivo, tope):
             for r in range(repes):   
                 # Repito repes veces las pruebas con cada tamaño 
                 # (instancias aleatorias cada vez) para ver mejor el caso promedio
-                output = subprocess.check_output(args_naive_lista_random(ejecutable, tam, tope))
+                output = subprocess.check_output(args_lista_random(tipo, tam, tope))
                 print(str(output.decode()), file=f, end=""),
 
 if __name__ == '__main__':
@@ -46,13 +51,13 @@ if __name__ == '__main__':
     if args.naive_random_cercanos:
         print("Inicia: exp_naive_random_cercanos")
         start_time = time.time()
-        exp_naive_random(path_random_cercanos, 20)
+        exp_random(tipo_naive, path_random_cercanos, 20)
         print("--- %s seconds ---" % (time.time() - start_time))
 
     if args.naive_random_lejanos:   
         print("Inicia: exp_naive_random_lejanos")
         start_time = time.time()
-        exp_naive_random(path_random_lejanos, 200000)
+        exp_random(tipo_naive, path_random_lejanos, 200000)
         print("--- %s seconds ---" % (time.time() - start_time))
 
 
