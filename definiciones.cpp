@@ -3,7 +3,7 @@
 #include <string>
 #include <climits>
 
-#define INFINITO INT_MAX
+#define INFINITO (INT_MAX - 10000000)
 
 
 enum Color {
