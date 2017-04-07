@@ -20,7 +20,16 @@ La idea es que DP[i][uR][uA] guarde el optimo de una secuencia de longitud i que
 
 
 // Completo casos base
-for ()
+
+Siempre que i sea cero, el minimo es 0 pues el primer elemento es 1
+for (ur = 0 to n) {
+    for(ua = 0 to n) {
+        DP[0][ur][ua] = 0;
+    }
+}
+
+// Caso recursivo
+
 
 for (i = 1 to n) {
 
@@ -29,7 +38,7 @@ for (i = 1 to n) {
     // pinto de nada
     for (uR = 0 to i-1) {
         for (uA = 0 to i-1) {
-            DP[i][uR][uA] = 1 + DP[i][uR][uA];
+            DP[i][uR][uA] = 1 + DP[i-1][uR][uA];
         }
     }
 
@@ -43,6 +52,8 @@ for (i = 1 to n) {
         for (uR = 0 to i-1) {
 
             // No puede ser que el mismo numero este pintado de dos colores, a menos que ninguno este pintado
+            // 0 representa que no hay ninguno de ese color
+
             if (uA != 0 && uA == uR) {
                 DP[i][uR][uA] = INFINITO
                 continue;
@@ -51,7 +62,14 @@ for (i = 1 to n) {
             // quiero DP[i][i][uA]
             // Veo si es valido poner un i en rojo dado uR
 
-            if (A[i] > A[uR]) {
+            if (uR == 0) {
+                // Si no hay ningun rojo, entonces soy valido
+                if (DP[i-1][0][uA] < min_rojo_opt) {
+                    min_rojo_opt = DP[i-1][0][uA];
+                }
+
+            } else if (A[i] > A[uR]) {
+                // Si hay alguno rojo tengo que ver si soy valido
                 // [a1, a2, (a3), ...., _ai-2, ai-1] ai
                 int ultimoColoreado = max(uR, uA);
                 int sinPintarEnMedio = i - ultimoColoreado - 1  //revisar +- 1 es importante
@@ -78,7 +96,8 @@ for (i = 1 to n) {
 
         for (uA = 0 to i-1) {
 
-            // No puede ser que el mismo numero este pintado de dos colores
+            // No puede ser que el mismo numero este pintado de dos colores, a menos que ninguno este pintado
+            // 0 representa que no hay ninguno de ese color
             if (uA != 0 && uA == uR) {
                 DP[i][uR][uA] = INFINITO
                 continue;
@@ -86,8 +105,12 @@ for (i = 1 to n) {
 
             // quiero DP[i][uR][i]
             // Veo si es valido poner un i en azul dado uA
-
-            if (A[i] < A[uA]) {
+            if (uA == 0) {
+                // Si no hay ningun azul, entonces soy valido
+                if (DP[i-1][uA][0] < min_azul_opt) {
+                    min_azul_opt = DP[i-1][uA][0];
+                }
+            } else if (A[i] < A[uA]) {
                 // [a1, a2, (a3), ...., _ai-2, ai-1] ai
                 int ultimoColoreado = max(uR, uA);
                 int sinPintarEnMedio = i - ultimoColoreado - 1  //revisar +- 1 es importante
