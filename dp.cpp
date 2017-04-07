@@ -4,6 +4,25 @@ using namespace std;
 
 vector<vector<vector<int> > > DP;
 
+void debug(int i) {
+    int n = (int)DP.size()-1;
+    for (int r = 0; r <= n; r++) {
+        for (int a = 0; a <= n; a++) {
+            int res = DP[i][r][a];
+            if (res == INFINITO) {
+                printf("%-12s", "~~~");
+            } else {
+                printf("%-12d", res);
+            }
+            // cout << "  ";
+        }
+        cout << "\n";
+    }
+    cout << "\n";
+}
+
+
+
 int f(const std::vector<int> &A) {
 
     int n = (int)A.size();
@@ -132,6 +151,13 @@ int f(const std::vector<int> &A) {
             optimoAbsoluto = min(optimoAbsoluto, DP[n][uR][uA]);
         }
     }
+
+    debug(1);
+
+    debug(2);
+
+    debug(3);
+
 
     return optimoAbsoluto;
 }
