@@ -38,9 +38,9 @@ int f(const std::vector<int> &A) {
         }
     }
 
-    // No usar ningun color nunca es dejar todos sin pintar
-    for (int i = 0; i <= n; i++) {
-        DP[i][0][0] = i;
+    // No usar ningun color nunca es dejar todos sin pintar, entonces puedo pintar el actual de cualquiera
+    for (int i = 1; i <= n; i++) {
+        DP[i][0][0] = max(i-2, 0);
     }
 
     // Caso recursivo
@@ -127,8 +127,8 @@ int f(const std::vector<int> &A) {
                 // Veo si es valido poner un i en azul dado uA
                 if (uA == 0) {
                     // Si no hay ningun azul, entonces soy valido
-                    if (DP[i-1][uA][0] < min_azul_opt) {
-                        min_azul_opt = DP[i-1][uA][0];
+                    if (DP[i-1][uR][0] < min_azul_opt) {
+                        min_azul_opt = DP[i-1][uR][0];
                     }
                 } else if (A[i] < A[uA]) {
                     // [a1, a2, (a3), ...., _ai-2, ai-1] ai
@@ -151,6 +151,8 @@ int f(const std::vector<int> &A) {
             optimoAbsoluto = min(optimoAbsoluto, DP[n][uR][uA]);
         }
     }
+
+    debug(0);
 
     debug(1);
 
