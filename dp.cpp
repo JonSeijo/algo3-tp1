@@ -18,7 +18,13 @@ int resolver_dp(int n, const std::vector<int> &numeros) {
 /*
 La idea es que DP[i][uR][uA] guarde el optimo de una secuencia de longitud i que termina en uR y uA
 
-f(i) {
+
+// Completo casos base
+for ()
+
+for (i = 1 to n) {
+
+    DP[i][i][i] = INFINITO;  // No puedo elegir i de ambos colores
 
     // pinto de nada
     for (uR = 0 to i-1) {
@@ -27,16 +33,17 @@ f(i) {
         }
     }
 
+    // idea: dp[i][i][uA] = min( |max(uR, uA) - i -1| + dp[i-1][uR][uA] )
     // Casos donde i es rojo, osea uR es i en el dp
 
     for (uA = 0 to i-1) {
         Completo todas las filas de uA dado que i es rojo
         int min_rojo_opt = INFINITO;
 
-        for (uR = 0 to i-a) {
+        for (uR = 0 to i-1) {
 
-            // No puede ser que el mismo numero este pintado de dos colores
-            if (uA == uR) {
+            // No puede ser que el mismo numero este pintado de dos colores, a menos que ninguno este pintado
+            if (uA != 0 && uA == uR) {
                 DP[i][uR][uA] = INFINITO
                 continue;
             }
@@ -53,34 +60,46 @@ f(i) {
                     min_rojo_opt = DP[i][uR][uA] + sinPintarEnMedio;
                 }
 
-            } else {
-                // sin importar el azul, con el ur actual la opcion donde i es rojo no es valida
-                DP[i][i][uA] = INFINITO;
             }
         }
         dp[i][i][uA] = min_rojo_opt  // Lleno todas las filas i, uA
     }
-    // dp[i][i][uA] = min( |max(uR, uA) - i -1| + dp[i-1][uR][uA] )
 
 
 
     // Casos donde i es azul, osea uA = i en el dp
-
-
-
+    // Idea analoga a lo anterior, moviendo uR
+    // idea: dp[i][uR][i] = min( |max(uR, uA) - i -1| + dp[i-1][uR][uA] )
 
 
     for (uR = 0 to i-1) {
-        for (uA = 0 to i-2) {
-            // si el i es nada
-            dp[i][uR][uA] = 1 + dp[i-1][uR][uA]
+        Completo todas las filas de uR dado que i es azul
+        int min_azul_opt = INFINITO;
 
-            // si el i es rojo
-            if (A[i] > A[uR]) {
-                dp[i][i][uA] =  dp[i-1][uR][uA]
+        for (uA = 0 to i-1) {
+
+            // No puede ser que el mismo numero este pintado de dos colores
+            if (uA != 0 && uA == uR) {
+                DP[i][uR][uA] = INFINITO
+                continue;
+            }
+
+            // quiero DP[i][uR][i]
+            // Veo si es valido poner un i en azul dado uA
+
+            if (A[i] < A[uA]) {
+                // [a1, a2, (a3), ...., _ai-2, ai-1] ai
+                int ultimoColoreado = max(uR, uA);
+                int sinPintarEnMedio = i - ultimoColoreado - 1  //revisar +- 1 es importante
+
+                if (DP[i][uR][uA] + sinPintarEnMedio < min_azul_opt) {
+                    min_azul_opt = DP[i][uR][uA] + sinPintarEnMedio;
+                }
             }
         }
+        dp[i][uR][i] = min_azul_opt  // Lleno todas las filas uR, i
     }
+
 }
 
 
