@@ -1,8 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <climits>
 
-enum Color { 
+#define INFINITO INT_MAX
+
+
+enum Color {
     Azul, Rojo, Ninguno
 };
 
