@@ -13,3 +13,75 @@ int f() {
 int resolver_dp(int n, const std::vector<int> &numeros) {
     return f();
 }
+
+
+/*
+La idea es que DP[i][uR][uA] guarde el optimo de una secuencia de longitud i que termina en uR y uA
+
+f(i) {
+
+    // pinto de nada
+    for (uR = 0 to i-1) {
+        for (uA = 0 to i-1) {
+            DP[i][uR][uA] = 1 + DP[i][uR][uA];
+        }
+    }
+
+    // Casos donde i es rojo, osea uR es i en el dp
+
+    for (uA = 0 to i-1) {
+        Completo todas las filas de uA dado que i es rojo
+        int min_rojo_opt = INFINITO;
+
+        for (uR = 0 to i-a) {
+
+            // No puede ser que el mismo numero este pintado de dos colores
+            if (uA == uR) {
+                DP[i][uR][uA] = INFINITO
+                continue;
+            }
+
+            // quiero DP[i][i][uA]
+            // Veo si es valido poner un i en rojo dado uR
+
+            if (A[i] > A[uR]) {
+                // [a1, a2, (a3), ...., _ai-2, ai-1] ai
+                int ultimoColoreado = max(uR, uA);
+                int sinPintarEnMedio = i - ultimoColoreado - 1  //revisar +- 1 es importante
+
+                if (DP[i][uR][uA] + sinPintarEnMedio < min_rojo_opt) {
+                    min_rojo_opt = DP[i][uR][uA] + sinPintarEnMedio;
+                }
+
+            } else {
+                // sin importar el azul, con el ur actual la opcion donde i es rojo no es valida
+                DP[i][i][uA] = INFINITO;
+            }
+        }
+        dp[i][i][uA] = min_rojo_opt  // Lleno todas las filas i, uA
+    }
+    // dp[i][i][uA] = min( |max(uR, uA) - i -1| + dp[i-1][uR][uA] )
+
+
+
+    // Casos donde i es azul, osea uA = i en el dp
+
+
+
+
+
+    for (uR = 0 to i-1) {
+        for (uA = 0 to i-2) {
+            // si el i es nada
+            dp[i][uR][uA] = 1 + dp[i-1][uR][uA]
+
+            // si el i es rojo
+            if (A[i] > A[uR]) {
+                dp[i][i][uA] =  dp[i-1][uR][uA]
+            }
+        }
+    }
+}
+
+
+*/
