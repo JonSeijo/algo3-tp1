@@ -1,6 +1,3 @@
-#include <climits>
-
-#define INFINITO INT_MAX;
 int backtrack_poda_minimo_global = INFINITO;
 
 // Devuelve la minima cantidad sin pintar posible

@@ -1,7 +1,3 @@
-#include <climits>
-
-#define INFINITO INT_MAX;
-
 bool valido(const std::vector<int> &numeros, std::vector<Color> &colores) {
     int n = (int)numeros.size();
     int ultimoRojo = -1;

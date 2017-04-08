@@ -28,7 +28,7 @@ make tiempos
 y ejecutar con ./tiempos
 
 
-## DATOS (WIP): 
+## DATOS (WIP):
 
 La generacion de datos esta hecha con algunas herramientas de python,
 Donde se exportaran los resultados a un .csv
@@ -37,7 +37,7 @@ Todo esto esta muy verde, ver las clases de labo para darse una idea de como res
 
 La idea es que una vez tengo todos los datos en el .csv,
 Automatizo los experimentos para que se corran de ese .csv, sea cuales sean.
-En caso de modificar los algoritmos (ergo los datos) lo unico que tengo que hacer 
+En caso de modificar los algoritmos (ergo los datos) lo unico que tengo que hacer
 es correr la herramienta graficadora una unica vez
 
 
@@ -69,23 +69,25 @@ Todos los archivos .tex del informe estan en /informe/
 
 [X] Armar makefile
 
-[X] Mejorar el algoritmo de bt poda haciendo que corte la solucion si tengo mas sinPintar que el minimo que consegui al momento (Tendria que tener una especie de minimo global por mas feo que suene, para no morir con el tema de los parametros) 
-
-[-] Hacer testeos mas complejos !
+[X] Mejorar el algoritmo de bt poda haciendo que corte la solucion si tengo mas sinPintar que el minimo que consegui al momento (Tendria que tener una especie de minimo global por mas feo que suene, para no morir con el tema de los parametros)
 
 [X] cpp de tiempos da los nanosegundos para cada algoritmo, dado una instancia
 
 [X] Crear carpeta para csv
 
-[-] Que tiempos escriba archivos csv
+[X] Que ~tiempos~ crearDatos.py escriba archivos csv
 
-[-] Crear script de python generador que ejecute ./tiempos
+[X] Crear script de python generador que ejecute ./tiempos
 
-[-] Pensar como organizar los experimentos
+[X] Pensar como organizar los experimentos
 
-[-] Que el script de python pueda generar instancias al azar de tamaño n
+[X] Que el script de python pueda generar instancias al azar de tamaño n
 
-[-] Que el script de python pueda repetir la misma instancia r veces
+[X] Que el script de python pueda repetir la misma instancia r veces
+
+[X] Preguntar bien que significa el item 2)
+
+[-] Hacer testeos mas complejos !
 
 [-] Ver como analizar las complejidades (Es incorrecto hacer una comparacion tiempos/curvas)
 
@@ -97,15 +99,14 @@ Todos los archivos .tex del informe estan en /informe/
 
 [-] Hacer analisis de complejidades
 
-[-] ¿Es posible que el backtracking de poda no sea exponencial en mejor caso? Analizar eso 
+[-] ¿Es posible que el backtracking de poda no sea exponencial en mejor caso? Analizar eso
 
-[-] Preguntar bien que significa el item 2)
 
 [-] Resolver usando DP bottomup
 
 [-] Resolver usando DP topdown
 
-[-] Armar ejecutables de ejX para cumplir consigna de tp. 
+[-] Armar ejecutables de ejX para cumplir consigna de tp.
 (Basicamente quiero poder hacer "make ej1" y "./ej1 [params]" )
 
 [-] Cota superior del informe: 10 paginas
