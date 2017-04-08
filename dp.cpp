@@ -36,7 +36,7 @@ int min3(int a, int b, int c) {
 // ur = n = (int)A.size()  significa que no hay rojos
 int sol(const std::vector<int> &A, int i, int ur, int ua) {
     // cout << "i: " << i << "\n";
-    if (i == 0) {
+    if (i == -1) {
         return 0;
     }
 
@@ -61,8 +61,9 @@ int caso_rojo(const std::vector<int> &A, int i, int ur, int ua) {
     }
     // si i es mas grande que el ultimo rojo, entonces no puede ser rojo pues ur no seria el ultimo
     if (i < ur) { 
-        if (A[i] < A[ur]) {
-            return sol(A, i-1, ur, ua);
+        if (A[i] < A[ur]) {  // Si se cumple la propiedad de que los rojos son crecientes estrictos
+            // return sol(A, i-1, ur, ua);
+            return sol(A, i-1, i, ua);
         }
     }
     if (i == ur) {
@@ -81,8 +82,9 @@ int caso_azul(const std::vector<int> &A, int i, int ur, int ua) {
     }
     // si i es mas grande que el ultimo azul, entonces no puede ser azul pues ua no seria eel ultimo
     if (i < ua) {
-        if (A[i] > A[ua]) {
-            return sol(A, i-1, ur, ua);
+        if (A[i] > A[ua]) {  // Si se cumple la propiedad de que los azules son decrecientes estrictos
+            // return sol(A, i-1, ur, ua);
+            return sol(A, i-1, ur, i);
         }
     }
     if (i == ua) {
@@ -270,9 +272,9 @@ int resolver_dp(int n, const std::vector<int> &numeros) {
        // debug(ur);
         for (int ua = 0; ua <= n; ua++) {
             if (ur != ua) {
-                int solu = sol(numeros, n, ur, ua);
+                int solu = sol(numeros, n-1, ur, ua);
                 min_abs = min(min_abs, solu);
-                cout << "ur: " << ur <<  " ua: " << ua << "  sol: " << solu << "\n";
+                // cout << "ur: " << ur <<  " ua: " << ua << "  sol: " << solu << "\n";
             }
         }
     }
