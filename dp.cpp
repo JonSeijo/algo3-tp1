@@ -4,6 +4,11 @@ using namespace std;
 
 vector<vector<vector<int> > > DP;
 
+int sol(const std::vector<int> &A, int i, int ur, int ua);
+int caso_rojo(const std::vector<int> &A, int i, int ur, int ua);
+int caso_azul(const std::vector<int> &A, int i, int ur, int ua);
+int caso_nada(const std::vector<int> &A, int i, int ur, int ua);
+
 void debug(int i) {
     cout << "\ni: " << i << "\n";
     int n = (int)DP.size()-1;
@@ -28,6 +33,70 @@ int min3(int a, int b, int c) {
     );
 }
 
+// ur = n = (int)A.size()  significa que no hay rojos
+int sol(const std::vector<int> &A, int i, int ur, int ua) {
+    // cout << "i: " << i << "\n";
+    if (i == 0) {
+        return 0;
+    }
+
+    if (DP[i][ur][ua] != -1) {
+        return DP[i][ur][ua];
+    }
+
+    return DP[i][ur][ua] = min3(
+        caso_nada(A, i, ur, ua),
+        caso_rojo(A, i, ur, ua),
+        caso_azul(A, i, ur, ua)
+    );
+}
+
+int caso_rojo(const std::vector<int> &A, int i, int ur, int ua) {
+    if (ur == (int)A.size()) {  // no pued haber caso rojo si no hay rojo
+        return INFINITO;
+    }
+
+    if (i == ua) {
+        return INFINITO;
+    }
+    // si i es mas grande que el ultimo rojo, entonces no puede ser rojo pues ur no seria el ultimo
+    if (i < ur) { 
+        if (A[i] < A[ur]) {
+            return sol(A, i-1, ur, ua);
+        }
+    }
+    if (i == ur) {
+        return sol(A, i-1, ur, ua);
+    }
+    return INFINITO;
+}
+
+int caso_azul(const std::vector<int> &A, int i, int ur, int ua) {
+    if (ua == (int)A.size()) { // no pued haber caso azul si no hay azul
+        return INFINITO; 
+    }
+
+    if (i == ur) {
+        return INFINITO;
+    }
+    // si i es mas grande que el ultimo azul, entonces no puede ser azul pues ua no seria eel ultimo
+    if (i < ua) {
+        if (A[i] > A[ua]) {
+            return sol(A, i-1, ur, ua);
+        }
+    }
+    if (i == ua) {
+        return sol(A, i-1, ur, ua);
+    }
+    return INFINITO;
+}
+
+int caso_nada(const std::vector<int> &A, int i, int ur, int ua) {
+    if (i != ua && i != ur) {
+        return 1 + sol(A, i-1, ur, ua);
+    }
+    return INFINITO;
+}
 
 int f2(const std::vector<int> &A, int i, int ur, int ua) {
     if (DP[i][ur][ua] =! -1) {
@@ -58,8 +127,6 @@ int f2(const std::vector<int> &A, int i, int ur, int ua) {
 
     return DP[i][ur][ua] = min3(min_nada, min_rojo, min_azul);
 }
-
-
 
 int f(const std::vector<int> &A) {
 
@@ -195,14 +262,18 @@ int f(const std::vector<int> &A) {
 
 
 int resolver_dp(int n, const std::vector<int> &numeros) {
-    DP.resize(n+1, vector<vector<int> >(n+1, vector<int>(n+1, INFINITO)));
+    DP.resize(n+1, vector<vector<int> >(n+1, vector<int>(n+1, -1)));
     // DP.resize(n+1, vector<vector<int> >(n+1, vector<int>(n+1, INFINITO)));
 
     int min_abs = INFINITO;
-    for (int ur = 0; ur < n; ur++) {
+    for (int ur = 0; ur <= n; ur++) {
        // debug(ur);
-        for (int ua = 0; ua < n; ua++) {
-            min_abs = min(min_abs, f2(numeros, n-1, ur, ua));
+        for (int ua = 0; ua <= n; ua++) {
+            if (ur != ua) {
+                int solu = sol(numeros, n, ur, ua);
+                min_abs = min(min_abs, solu);
+                cout << "ur: " << ur <<  " ua: " << ua << "  sol: " << solu << "\n";
+            }
         }
     }
     return min_abs;
@@ -213,115 +284,3 @@ int resolver_dp(int n, const std::vector<int> &numeros) {
 // 12 3 11 0 1 3 5 2 4 1 0 9 3
 
 // 8 0 7 1 2 2 1 5 0
-
-/*
-La idea es que DP[i][uR][uA] guarde el optimo de una secuencia de longitud i que termina en uR y uA
-
-
-// Completo casos base
-
-Siempre que i sea cero, el minimo es 0 pues el primer elemento es 1
-for (ur = 0 to n) {
-    for(ua = 0 to n) {
-        DP[0][ur][ua] = 0;
-    }
-}
-
-// Caso recursivo
-
-
-for (i = 1 to n) {
-    DP[i][i][i] = INFINITO;  // No puedo elegir i de ambos colores
-
-    // pinto de nada
-    for (uR = 0 to i-1) {
-        for (uA = 0 to i-1) {
-            DP[i][uR][uA] = 1 + DP[i-1][uR][uA];
-        }
-    }
-
-    // idea: dp[i][i][uA] = min( |max(uR, uA) - i -1| + dp[i-1][uR][uA] )
-    // Casos donde i es rojo, osea uR es i en el dp
-
-    for (uA = 0 to i-1) {
-        Completo todas las filas de uA dado que i es rojo
-        int min_rojo_opt = INFINITO;
-
-        for (uR = 0 to i-1) {
-
-            // No puede ser que el mismo numero este pintado de dos colores, a menos que ninguno este pintado
-            // 0 representa que no hay ninguno de ese color
-
-            if (uA != 0 && uA == uR) {
-                DP[i][uR][uA] = INFINITO
-                continue;
-            }
-
-            // quiero DP[i][i][uA]
-            // Veo si es valido poner un i en rojo dado uR
-
-            if (uR == 0) {
-                // Si no hay ningun rojo, entonces soy valido
-                if (DP[i-1][0][uA] < min_rojo_opt) {
-                    min_rojo_opt = DP[i-1][0][uA];
-                }
-
-            } else if (A[i] > A[uR]) {
-                // Si hay alguno rojo tengo que ver si soy valido
-                // [a1, a2, (a3), ...., _ai-2, ai-1] ai
-                int ultimoColoreado = max(uR, uA);
-                int sinPintarEnMedio = i - ultimoColoreado - 1  //revisar +- 1 es importante
-
-                if (DP[i][uR][uA] + sinPintarEnMedio < min_rojo_opt) {
-                    min_rojo_opt = DP[i][uR][uA] + sinPintarEnMedio;
-                }
-
-            }
-        }
-        dp[i][i][uA] = min_rojo_opt  // Lleno todas las filas i, uA
-    }
-
-
-
-    // Casos donde i es azul, osea uA = i en el dp
-    // Idea analoga a lo anterior, moviendo uR
-    // idea: dp[i][uR][i] = min( |max(uR, uA) - i -1| + dp[i-1][uR][uA] )
-
-
-    for (uR = 0 to i-1) {
-        Completo todas las filas de uR dado que i es azul
-        int min_azul_opt = INFINITO;
-
-        for (uA = 0 to i-1) {
-
-            // No puede ser que el mismo numero este pintado de dos colores, a menos que ninguno este pintado
-            // 0 representa que no hay ninguno de ese color
-            if (uA != 0 && uA == uR) {
-                DP[i][uR][uA] = INFINITO
-                continue;
-            }
-
-            // quiero DP[i][uR][i]
-            // Veo si es valido poner un i en azul dado uA
-            if (uA == 0) {
-                // Si no hay ningun azul, entonces soy valido
-                if (DP[i-1][uA][0] < min_azul_opt) {
-                    min_azul_opt = DP[i-1][uA][0];
-                }
-            } else if (A[i] < A[uA]) {
-                // [a1, a2, (a3), ...., _ai-2, ai-1] ai
-                int ultimoColoreado = max(uR, uA);
-                int sinPintarEnMedio = i - ultimoColoreado - 1  //revisar +- 1 es importante
-
-                if (DP[i][uR][uA] + sinPintarEnMedio < min_azul_opt) {
-                    min_azul_opt = DP[i][uR][uA] + sinPintarEnMedio;
-                }
-            }
-        }
-        dp[i][uR][i] = min_azul_opt  // Lleno todas las filas uR, i
-    }
-
-}
-
-
-*/
