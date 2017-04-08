@@ -3,6 +3,7 @@
 #include <string>
 #include <climits>
 
+// Lo defino asi para no tener overflows inesperados si es que tengo que sumar valores
 #define INFINITO (INT_MAX - 10000000)
 
 
@@ -18,4 +19,10 @@ std::ostream& operator<<(std::ostream& os, Color c) {
         default: os << "Ninguno";
     }
     return os;
+}
+
+int min3(int a, int b, int c) {
+    return std::min(a,
+        std::min(b, c)
+    );
 }
