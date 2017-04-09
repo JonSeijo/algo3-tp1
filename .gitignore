@@ -1,5 +1,13 @@
+informe/informe.aux
+informe/informe.log
+informe/informe.out
+informe/informe.toc
+datos/bottomup/.~lock.random.csv#
+datos/topdown/.~lock.random.csv#
 backtrack
 backtrack_naive
+bottomup
+topdown
 tiempos
 solucion
 Makefile
