@@ -1,3 +1,35 @@
+
+int bottomup_caso_nada(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
+    return 1 + DP[i-1][ur][ua];
+}
+
+int bottomup_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
+    int min_rojo = INFINITO;
+    
+    bool es_ultimo_rojo = (i == ur) && (i != ua);
+    bool cumple_propiedad = (i < ur) && (A[i-1] < A[ur-1]);
+    
+    if (es_ultimo_rojo || cumple_propiedad) {
+        min_rojo = DP[i-1][i][ua];
+    }
+
+    return min_rojo;
+}
+
+int bottomup_caso_azul(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
+    int min_azul = INFINITO;
+    
+    bool es_ultimo_azul = (i == ua) && (i != ur);
+    bool cumple_propiedad = (i < ua) && (A[i-1] > A[ua-1]);
+    
+    if (es_ultimo_azul || cumple_propiedad) {
+        min_azul = DP[i-1][ur][i];
+    }
+
+    return min_azul;
+}
+
+
 int resolver_dp_bottomup(int n, const std::vector<int> &A) {
     Matriz3 DP;
     DP.resize(0);
@@ -19,26 +51,11 @@ int resolver_dp_bottomup(int n, const std::vector<int> &A) {
 
     for (int ur = 1; ur <= n+1; ur++) {
         for (int ua = 1; ua <= n+1; ua++) {
-
-            if (ur == ua) 
-                continue;
-
-            // recordar que lo que quiero ver es A[i-1]
             for (int i = 1; i <= n; i++) {
 
-
-                // caso nada
-                int min_nada = 1 + DP[i-1][ur][ua];
-
-                int min_rojo =   INFINITO;
-                if (i == ur || (i < ur && A[i-1] < A[ur-1])) {
-                    min_rojo = DP[i-1][i][ua];
-                }
-
-                int min_azul = INFINITO;
-                if (i == ua || (i < ua && A[i-1] > A[ua-1])) {
-                    min_azul = DP[i-1][ur][i];
-                }
+                int min_nada = bottomup_caso_nada(DP, A, i, ur, ua);
+                int min_rojo = bottomup_caso_rojo(DP, A, i, ur, ua);
+                int min_azul = bottomup_caso_azul(DP, A, i, ur, ua);
 
                 DP[i][ur][ua] = min3(min_nada, min_rojo, min_azul);               
             }            
