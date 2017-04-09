@@ -2,93 +2,58 @@ using namespace std;
 
 // vector<vector<vector<int> > > DP;
 
-int bottomup_sol(const std::vector<int> &A, int i, int ur, int ua);
-int bottomup_caso_rojo(const std::vector<int> &A, int i, int ur, int ua);
-int bottomup_caso_azul(const std::vector<int> &A, int i, int ur, int ua);
-int bottomup_caso_nada(const std::vector<int> &A, int i, int ur, int ua);
+int resolver_dp_bottomup(int n, const std::vector<int> &A) {
+    DP.resize(n+3, vector<vector<int> >(n+3, vector<int>(n+3, INFINITO)));
 
-int bottomup_sol(const std::vector<int> &A, int i, int ur, int ua) {
-    if (i == -1) {
-        return 0;
+    for (int ur = 0; ur <= n; ur++) {
+                // cout << "ur: " << ur << "\n";
+        for (int ua = 0; ua <= n; ua++) {
+            DP[0][ur][ua] = 0;  // caso base para terminar la suma
+        }        
     }
 
-    if (DP[i][ur][ua] != -1) {
-        return DP[i][ur][ua];
-    }
-
-    return DP[i][ur][ua] = min3(
-        bottomup_caso_nada(A, i, ur, ua),
-        bottomup_caso_rojo(A, i, ur, ua),
-        bottomup_caso_azul(A, i, ur, ua)
-    );
-}
-
-int bottomup_caso_rojo(const std::vector<int> &A, int i, int ur, int ua) {
-    if (ur == (int)A.size()) {  // no pued haber caso rojo si no hay rojo
-        return INFINITO;
-    }
-
-    if (i == ua) {
-        return INFINITO;
-    }
-    // si i es mas grande que el ultimo rojo, entonces no puede ser rojo pues ur no seria el ultimo
-    if (i < ur) { 
-        if (A[i] < A[ur]) {  // Si se cumple la propiedad de que los rojos son crecientes estrictos
-            // return bottomup_sol(A, i-1, ur, ua);
-            return bottomup_sol(A, i-1, i, ua);
+    for (int r = 0; r < n; r++) {
+        for (int i = 0; i <= n; i++) {
+            DP[i][r][r] = INFINITO;
         }
     }
-    if (i == ur) {
-        return bottomup_sol(A, i-1, ur, ua);
-    }
-    return INFINITO;
-}
-
-int bottomup_caso_azul(const std::vector<int> &A, int i, int ur, int ua) {
-    if (ua == (int)A.size()) { // no pued haber caso azul si no hay azul
-        return INFINITO; 
-    }
-
-    if (i == ur) {
-        return INFINITO;
-    }
-    // si i es mas grande que el ultimo azul, entonces no puede ser azul pues ua no seria eel ultimo
-    if (i < ua) {
-        if (A[i] > A[ua]) {  // Si se cumple la propiedad de que los azules son decrecientes estrictos
-            // return bottomup_sol(A, i-1, ur, ua);
-            return bottomup_sol(A, i-1, ur, i);
-        }
-    }
-    if (i == ua) {
-        return bottomup_sol(A, i-1, ur, ua);
-    }
-    return INFINITO;
-}
-
-int bottomup_caso_nada(const std::vector<int> &A, int i, int ur, int ua) {
-    if (i != ua && i != ur) {
-        return 1 + bottomup_sol(A, i-1, ur, ua);
-    }
-    return INFINITO;
-}
-
-int resolver_dp_bottomup(int n, const std::vector<int> &numeros) {
-    DP.resize(n+1, vector<vector<int> >(n+1, vector<int>(n+1, -1)));
 
     int min_abs = INFINITO;
 
+    for (int ur = 1; ur <= n; ur++) {
+        for (int ua = 1; ua <= n; ua++) {
+            // recordar que lo que quiero ver es A[i-1]
+            for (int i = 1; i <= n; i++) {
+                // cout << "i: " << i << "\n";
+
+ 
+                // caso nada
+                int min_nada = 1 + DP[i-1][ur][ua];
+
+                int min_rojo = INFINITO;
+                if ((i-1 == ur) || (i-1 < ur && A[i-1] < A[ur])) {
+                    min_rojo = DP[i-1][i-1][ua];
+                }
+
+                int min_azul = INFINITO;
+                if ((i-1 == ua) || (i-1 < ua && A[i-1] > A[ua])) {
+                    min_rojo = DP[i-1][ur][i-1];
+                }
+
+                DP[i][ur][ua] = min3(min_nada, min_rojo, min_azul);               
+            }            
+        }
+    }
+
+
     for (int ur = 0; ur <= n; ur++) {
         for (int ua = 0; ua <= n; ua++) {
-            if (ur != ua) {
-                int solu = bottomup_sol(numeros, n-1, ur, ua);
-                min_abs = min(min_abs, solu);
-                // cout << "ur: " << ur <<  " ua: " << ua << "  sol: " << solu << "\n";
-            }
+            min_abs = min(min_abs, DP[n-1][ur][ua]);
         }
     }
     return min_abs;
+
 }
 
-// 12 3 11 0 1 3 5 2 4 1 0 9 3
-
-// 8 0 7 1 2 2 1 5 0
+// incorrecto
+// ./solucion 12 3 11 0 1 3 5 2 4 1 0 9 123123
