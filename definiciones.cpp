@@ -4,7 +4,7 @@
 #include <climits>
 
 // Lo defino asi para no tener overflows inesperados si es que tengo que sumar valores
-#define INFINITO (INT_MAX - 10000000)
+#define INFINITO (INT_MAX - 1000)
 
 typedef std::vector<std::vector<std::vector<int> > > Matriz3;
 

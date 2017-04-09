@@ -1,32 +1,36 @@
-
 int bottomup_caso_nada(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
+    // Al no pintar el actual, entonces el total es 1 + resultado hasta el anterior.
     return 1 + DP[i-1][ur][ua];
 }
 
 int bottomup_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
-    int min_rojo = INFINITO;
+    int min_sinpintar = INFINITO; // Resultado es infinito si no pude pintar el actual de rojo.
     
     bool es_ultimo_rojo = (i == ur) && (i != ua);
-    bool cumple_propiedad = (i < ur) && (A[i-1] < A[ur-1]);
+    bool cumple_propiedad = (i < ur) && (A[i-1] < A[ur-1]); //(x -> A[x-1] pues indices en A empiezan en 0)
     
+    // Si es posible pintar el actual de rojo, 
+    // entonces el minimo_sinpintar es la solucion hasta el anterior dado que el actual es ultimo rojo.
     if (es_ultimo_rojo || cumple_propiedad) {
-        min_rojo = DP[i-1][i][ua];
+        min_sinpintar = DP[i-1][i][ua];
     }
 
-    return min_rojo;
+    return min_sinpintar;
 }
 
 int bottomup_caso_azul(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
-    int min_azul = INFINITO;
+    int min_sinpintar = INFINITO; // Resultado es infinito si no pude pintar el acual de azul.
     
     bool es_ultimo_azul = (i == ua) && (i != ur);
-    bool cumple_propiedad = (i < ua) && (A[i-1] > A[ua-1]);
+    bool cumple_propiedad = (i < ua) && (A[i-1] > A[ua-1]); //(x -> A[x-1] pues indices en A empiezan en 0)
     
+    // Si es posible pintar el actual de azul, 
+    // entonces el minimo_sinpintar es la solucion hasta el anterior dado que el actual es el ultimo azul
     if (es_ultimo_azul || cumple_propiedad) {
-        min_azul = DP[i-1][ur][i];
+        min_sinpintar = DP[i-1][ur][i];
     }
 
-    return min_azul;
+    return min_sinpintar;
 }
 
 
@@ -62,12 +66,11 @@ int resolver_dp_bottomup(int n, const std::vector<int> &A) {
         }
     }
 
-
+    // Eventualmente extraer a  Matriz3::min(int n) -> int 
     for (int ur = 0; ur <= n+1; ur++) {
         for (int ua = 0; ua <= n+1; ua++) {
             int rta = DP[n][ur][ua];
             min_abs = std::min(min_abs, rta);
-            // cout << "ur: " << ur << " ua: " << ua << " rta: " << rta << "\n";
         }
     }
 
