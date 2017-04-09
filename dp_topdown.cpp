@@ -1,7 +1,5 @@
 using namespace std;
 
-vector<vector<vector<int> > > DP;
-
 int topdown_sol(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);
 int topdown_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);
 int topdown_caso_azul(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);

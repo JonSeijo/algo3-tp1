@@ -1,9 +1,7 @@
 using namespace std;
 
-// vector<vector<vector<int> > > DP;
-
 int resolver_dp_bottomup(int n, const std::vector<int> &A) {
-    
+    Matriz3 DP;
     DP.resize(0);
     DP.resize(n+2, vector<vector<int> > (n+2, vector<int>(n+2, INFINITO)));
 
