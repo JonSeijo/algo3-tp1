@@ -85,8 +85,6 @@ Todos los archivos .tex del informe estan en /informe/
 
 [X] Que el script de python pueda repetir la misma instancia r veces
 
-[X] Preguntar bien que significa el item 2)
-
 [-] Hacer testeos mas complejos !
 
 [-] Ver como analizar las complejidades (Es incorrecto hacer una comparacion tiempos/curvas)
@@ -101,10 +99,11 @@ Todos los archivos .tex del informe estan en /informe/
 
 [-] ¿Es posible que el backtracking de poda no sea exponencial en mejor caso? Analizar eso
 
+[X] Resolver usando DP bottomup
 
-[-] Resolver usando DP bottomup
+[X] Resolver usando DP topdown
 
-[-] Resolver usando DP topdown
+[-] Usar diferentes tablas para el topdown y el bottom up, para no pagar el costo de borrar una en la otra version 
 
 [-] Armar ejecutables de ejX para cumplir consigna de tp.
 (Basicamente quiero poder hacer "make ej1" y "./ej1 [params]" )
