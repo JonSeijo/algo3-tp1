@@ -1,3 +1,5 @@
+\subsection{Explicación}
+
 Dada una secuencia de números $A$, se quiere pintar algunos de sus números de color rojo o azul. Dicho de otro modo, cada número de la secuencia puede ser pintado de color rojo, azul o de ningun color. \\
 
 Una aclaración importante es que los elementos de $A$ no pueden modificarse, ni tampoco cambiarse su orden inicial. Lo unico que puede hacerse con ellos es colorearlos (o no).\\
@@ -6,8 +8,8 @@ Pintando $A$ de alguna forma se obtiene una secuencia de colores, pero no todas 
 
 Decimos que una secuencia de colores es válida si se cumplen las siguientes condiciones:
 \begin{enumerate}
-\item Todos los elementos de color \textcolor{red}{rojo} están ordenados por valor de forma \underline{estrictamente creciente}
-\item Todos los elementos de color \textcolor{blue}{azul} están ordenados por valor de forma \underline{estrictamente decreciente}
+\item Todos los elementos de color \textcolor{rojo}{rojo} están ordenados por valor de forma \underline{estrictamente creciente}
+\item Todos los elementos de color \textcolor{azul}{azul} están ordenados por valor de forma \underline{estrictamente decreciente}
 \end{enumerate}
 
 Las secuencias de colores válidas pueden tener diferentes cantidades de elementos sin pintar. \\
@@ -18,3 +20,25 @@ El objetivo del problema es encontrar la mínima cantidad de elementos sin pinta
 % \centering {
 % $(\forall e \in A) ($ color($e$) $\in$ $\{$Rojo, Azul, Ninguno$\}$) \\
 % }
+
+% \[[\textcolor{rojo}{5}, \textcolor{black}{6}, \textcolor{rojo}{\textbf{7}}]\]
+% \[[\textcolor{rojo}{5}, \textcolor{azul}{6}, \textcolor{black}{7}]\]
+% \[[\textcolor{rojo}{5}, \textcolor{azul}{6}, \textcolor{rojo}{7}]\]
+
+\subsection{Ejemplos}
+
+Supongamos que $A$ = [0, 7, 1, 2, 2, 1, 5, 0]. Veamos \textbf{algunas} de las posibles secuencias de colores válidas: \\
+
+{\centering 
+  \includegraphics[width=0.50\textwidth]{informe/img/ejemplos/ejemplo1_finalsmall.png} \\
+}
+
+\vspace{1cm}
+El tercer caso es una secuencia valida donde la cantidad de elementos sin pintar es 0.
+\begin{enumerate}
+\item \textcolor{rojo}{\textbf{Rojos:}} [0, 1, 2, 5]  (estrictamente crecientes)
+\item \textcolor{azul}{\textbf{Azules:}} [7, 2, 1, 0]  (estrictamente decrecientes)
+\end{enumerate}
+
+Podemos ver que diferentes formas de pintar de rojo y azul nos obligan a dejar algunos elementos sin pintar para que la secuencia sea válida. En el caso de este ejemplo la mínima cantidad de elementos sin pintar que puede obtenerse es 0, como puede verse en la tercer combinación. \\
+% \end{figure}
