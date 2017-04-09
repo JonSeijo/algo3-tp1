@@ -27,7 +27,7 @@ cota_valor_maximo = 1000000
 n_maximo_naive = 15 
 n_maximo_poda = 32 # Con 32 tarda 5 segundos
 n_maximo_topdown = 90 # Con 100 tarda 1 minuto
-n_maximo_bottomup = 90
+n_maximo_bottomup = 90  
 
 def args_lista_random(tipo, n):
     return [ejecutable, tipo, str(n)] + [str(random.randrange(1, cota_valor_maximo+1)) for _ in range(n)]
