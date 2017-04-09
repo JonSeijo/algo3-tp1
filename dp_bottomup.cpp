@@ -2,29 +2,10 @@ using namespace std;
 
 // vector<vector<vector<int> > > DP;
 
-void debug2(int i) {
-    cout << "\ni: " << i << "\n";
-    int n = (int)DP.size()-3;
-    for (int r = 0; r <= n; r++) {
-        for (int a = 0; a <= n; a++) {
-            int res = DP[i][r][a];
-            if (res == INFINITO) {
-                printf("%-7s", "~~");
-            } else {
-                printf("%-7d", res);
-            }
-            // cout << "  ";
-        }
-        cout << "\n";
-    }
-    cout << "";
-}
-
-
 int resolver_dp_bottomup(int n, const std::vector<int> &A) {
     
     DP.resize(0);
-    DP.resize(n+3, vector<vector<int> > (n + 3, vector<int>(n + 3, INFINITO)));
+    DP.resize(n+2, vector<vector<int> > (n+2, vector<int>(n+2, INFINITO)));
 
     for (int ur = 0; ur <= n+1; ur++) {
         for (int ua = 0; ua <= n+1; ua++) {
@@ -42,12 +23,13 @@ int resolver_dp_bottomup(int n, const std::vector<int> &A) {
 
     for (int ur = 1; ur <= n+1; ur++) {
         for (int ua = 1; ua <= n+1; ua++) {
+
+            if (ur == ua) 
+                continue;
+
             // recordar que lo que quiero ver es A[i-1]
             for (int i = 1; i <= n; i++) {
 
-                if (ur == ua) {
-                    continue;
-                }
 
                 // caso nada
                 int min_nada = 1 + DP[i-1][ur][ua];
