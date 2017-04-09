@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
 
     std::cout << "Solucion bt naive: " << resolver_backtracking_naive(n, numeros) << "\n";
     std::cout << "Solucion bt poda: " << resolver_backtracking_poda(n, numeros) << "\n";
-    std::cout << "Solucion DP: " << resolver_dp(n, numeros) << "\n";
+    std::cout << "Solucion DP: " << resolver_dp_topdown(n, numeros) << "\n";
     return 0;
 }
 
