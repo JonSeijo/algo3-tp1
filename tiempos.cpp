@@ -1,6 +1,8 @@
 #include "definiciones.cpp"
 #include "backtracking_naive.cpp"
 #include "backtracking_poda.cpp"
+#include "dp_topdown.cpp"
+#include "dp_bottomup.cpp"
 #include <stdlib.h>
 #include <chrono>
 #include <stdexcept>
@@ -17,6 +19,25 @@ const std::string bt_poda = "poda";
 const std::string dp_todo = "dp";
 const std::string dp_topdown = "topdown";
 const std::string dp_bottomup = "bottomup";
+
+void medir_DP_topdown(int n, std::vector<int> &numeros) {
+    auto start = ya();
+    resolver_dp_topdown(n, numeros);
+    auto end = ya();
+    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count() << ";";    
+}
+
+void medir_DP_bottomup(int n, std::vector<int> &numeros) {
+    auto start = ya();
+    resolver_dp_bottomup(n, numeros);
+    auto end = ya();
+    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count() << ";";    
+}
+
+void medir_DP(int n, std::vector<int> &numeros) {
+    medir_DP_topdown(n ,numeros);
+    medir_DP_bottomup(n ,numeros);
+}
 
 void medirBacktrackNaive(int n, std::vector<int> &numeros) {
     auto start = ya();
@@ -39,6 +60,7 @@ void medirBacktrack(int n, std::vector<int> &numeros) {
 
 void medirTodo(int n, std::vector<int> &numeros) {
     medirBacktrack(n, numeros);
+    medir_DP(n, numeros);
 }
 
 /*
@@ -68,6 +90,12 @@ int main(int argc, char *argv[]) {
         medirBacktrackPoda(n, numeros);
     } else if (programa == bt_todo) {
         medirBacktrack(n, numeros);
+    } else if (programa == dp_bottomup) {
+        medir_DP_bottomup(n, numeros);
+    } else if (programa == dp_topdown) {
+        medir_DP_topdown(n, numeros);
+    } else if (programa == dp_todo) {
+        medir_DP(n, numeros);
     } else if (programa == todo) {
         medirTodo(n, numeros);
     } else {
