@@ -1,9 +1,7 @@
-using namespace std;
-
 int resolver_dp_bottomup(int n, const std::vector<int> &A) {
     Matriz3 DP;
     DP.resize(0);
-    DP.resize(n+2, vector<vector<int> > (n+2, vector<int>(n+2, INFINITO)));
+    DP.resize(n+2, std::vector<std::vector<int> > (n+2, std::vector<int>(n+2, INFINITO)));
 
     for (int ur = 0; ur <= n+1; ur++) {
         for (int ua = 0; ua <= n+1; ua++) {
@@ -51,7 +49,7 @@ int resolver_dp_bottomup(int n, const std::vector<int> &A) {
     for (int ur = 0; ur <= n+1; ur++) {
         for (int ua = 0; ua <= n+1; ua++) {
             int rta = DP[n][ur][ua];
-            min_abs = min(min_abs, rta);
+            min_abs = std::min(min_abs, rta);
             // cout << "ur: " << ur << " ua: " << ua << " rta: " << rta << "\n";
         }
     }

@@ -1,5 +1,3 @@
-using namespace std;
-
 int topdown_sol(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);
 int topdown_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);
 int topdown_caso_azul(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);
@@ -73,7 +71,7 @@ int topdown_caso_nada(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int
 int resolver_dp_topdown(int n, const std::vector<int> &numeros) {
     Matriz3 DP;
     DP.resize(0);
-    DP.resize(n+1, vector<vector<int> >(n+1, vector<int>(n+1, -1)));
+    DP.resize(n+1, std::vector<std::vector<int> >(n+1, std::vector<int>(n+1, -1)));
 
     int min_abs = INFINITO;
 
@@ -81,7 +79,7 @@ int resolver_dp_topdown(int n, const std::vector<int> &numeros) {
         for (int ua = 0; ua <= n; ua++) {
             if (ur != ua) {
                 int solu = topdown_sol(DP, numeros, n-1, ur, ua);
-                min_abs = min(min_abs, solu);
+                min_abs = std::min(min_abs, solu);
             }
         }
     }
