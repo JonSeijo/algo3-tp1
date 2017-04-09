@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
         medirBacktrackPoda(n, numeros);
     } else if (programa == bt_todo) {
         medirBacktrack(n, numeros);
-    } else if (programa == bt_todo) {
+    } else if (programa == todo) {
         medirTodo(n, numeros);
     } else {
         throw std::invalid_argument("Parametro 'programa' no es valido !!");
