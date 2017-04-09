@@ -39,6 +39,7 @@ int topdown_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int
     // Si indice i es mas chico que el ultimo rojo, entonces puede ser rojo
     // En ese caso, para que el elemento i sea rojo veo si se cumple la propiedad de creciente estricto
     if ((i < ur) && (A[i] < A[ur])) { 
+        // Veo la solucion donde ahora i es el ultimo rojo
         return topdown_sol(DP, A, i-1, i, ua);
     }
     
@@ -46,23 +47,29 @@ int topdown_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int
 }
 
 int topdown_caso_azul(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
-    if (ua == (int)A.size()) { // no pued haber caso azul si no hay azul
+    // No puede ser azul si estoy viendo el caso donde no hay azul.
+    if (ua == (int)A.size()) {
         return INFINITO; 
     }
 
+    // No puede ser azul si ya es el ultimo rojo.
     if (i == ur) {
         return INFINITO;
     }
-    // si i es mas grande que el ultimo azul, entonces no puede ser azul pues ua no seria eel ultimo
-    if (i < ua) {
-        if (A[i] > A[ua]) {  // Si se cumple la propiedad de que los azules son decrecientes estrictos
-            // return topdown_sol(A, i-1, ur, ua);
-            return topdown_sol(DP, A, i-1, ur, i);
-        }
-    }
+    
+    // Si es el ultimo azul, entonces es azul.
     if (i == ua) {
         return topdown_sol(DP, A, i-1, ur, ua);
     }
+
+    // Si indice i fuese mas grande que el ultimo azul, entonces i no puede ser azul pues ua no seria el ultimo
+    // Si indice i es mas chico que el ultimo azul, entonces puede ser azul
+    // En ese caso, para que el elemento i sea azul veo si se cumple la propiedad de decreciente estricto
+    if ((i < ua) && (A[i] > A[ua])) { 
+        // Veo la solucion donde ahora i es el ultimo azul
+        return topdown_sol(DP, A, i-1, ur, i);    
+    }
+    
     return INFINITO;
 }
 
