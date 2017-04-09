@@ -3,6 +3,7 @@ int topdown_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int
 int topdown_caso_azul(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);
 int topdown_caso_nada(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);
 
+
 int topdown_sol(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
     if (i == -1) {
         return 0;
@@ -18,6 +19,7 @@ int topdown_sol(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
         topdown_caso_azul(DP, A, i, ur, ua)
     );
 }
+
 
 int topdown_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
     // No puede ser rojo si estoy viendo el caso donde no hay rojo.
@@ -46,6 +48,7 @@ int topdown_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int
     return INFINITO;
 }
 
+
 int topdown_caso_azul(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
     // No puede ser azul si estoy viendo el caso donde no hay azul.
     if (ua == (int)A.size()) {
@@ -69,16 +72,22 @@ int topdown_caso_azul(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int
         // Veo la solucion donde ahora i es el ultimo azul
         return topdown_sol(DP, A, i-1, ur, i);    
     }
-    
+
     return INFINITO;
 }
 
+
 int topdown_caso_nada(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
+    // No puede pasar que quiera pintar a i de nada, pero que al mismo tiempo el ultimo rojo/azul 
     if (i != ua && i != ur) {
+        // La solucion devuelve la cantidad sin pintar. 
+        // Como el actual no lo pinto, devuelvo 1 sumado a la solucion para el indice anterior. 
         return 1 + topdown_sol(DP, A, i-1, ur, ua);
     }
+
     return INFINITO;
 }
+
 
 int resolver_dp_topdown(int n, const std::vector<int> &numeros) {
     Matriz3 DP;
@@ -89,10 +98,10 @@ int resolver_dp_topdown(int n, const std::vector<int> &numeros) {
 
     for (int ur = 0; ur <= n; ur++) {
         for (int ua = 0; ua <= n; ua++) {
-            if (ur != ua) {
+            // if (ur != ua) {
                 int solu = topdown_sol(DP, numeros, n-1, ur, ua);
                 min_abs = std::min(min_abs, solu);
-            }
+            // }
         }
     }
     return min_abs;
