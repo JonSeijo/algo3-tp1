@@ -1,4 +1,19 @@
-\subsubsection{Pseudocódigo}
+\subsection{Solución} 
+
+Llamo $A$ a la secuencia de números que quiero pintar, y $n$ a la cantidad de elementos en $A$. De todas las secuencias válidas de colores que puedo formar quiero saber cual es la mínima cantidad de elementos que puedo dejar sin pintar. \\
+
+Una forma natural de pensar la solución es la siguiente: genero todas las formas de pintar posibles, y veo cual es el mínimo sin pintar que puede usarse para las secuencias que son válidas. Esa es la idea central detrás de ambos algoritmos de backtracking. Veamos entonces una posible implementación, la forma \textit{naive}. \\
+
+El primer elemento puede ser Rojo, Azul o Ninguno. Dado el color del primero, el segundo elemento puede también ser Rojo, Azul o Ninguno. Fijados el primero y el segundo, el tercero puede ser tomar cualquiera de las tres posibilidades, y así siguiendo. \\
+
+Una vez fijos los colores de los $n$ elementos, reviso si la secuencia de colores que se formó es válida. (Esto es, que los elementos rojos estén ordenados crecientemente y los azules decrecientemente, ambos de forma estricta). \\
+
+Si la secuencia formada era válida, entonces cuento la cantidad de elementos sin pintar, y devuelvo ese número. La respuesta final es se consigue tomando el mínimo de todos los mínimos. \\
+
+Como detalle de implementación, en caso de que la secuencia formada no sea válida, devuelvo un valor infinito para que no afecte al valor mínimo solución. Ésta siempre existe porque no pintar ningún elemento de ningún color es una solucion válida \textbf{finita}
+
+
+\subsection{Pseudocodigo}
 
 \begin{algorithm}
 \begin{algorithmic}
@@ -54,3 +69,5 @@ Auxiliares:
 \end{algorithmic}
 \end{algorithm}
 
+
+\subsection{Complejidad}
