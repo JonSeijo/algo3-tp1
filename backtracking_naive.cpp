@@ -24,35 +24,42 @@ bool valido(const std::vector<int> &numeros, std::vector<Color> &colores) {
     return true;
 }
 
+int cuentaSinPintar(const std::vector<Color> &colores) {
+    int sinPintar = 0;
+    for (int i = 0; i < (int)colores.size(); i++) {
+        sinPintar += (colores[i] == Ninguno ? 1 : 0);
+    }
+    return sinPintar;
+}
+
 // Devuelve la minima cantidad sin pintar posible
-int backtrack_naive(const std::vector<int> &numeros, int actual, std::vector<Color> &colores, int cantSinPintar) {
+int backtrack_naive(const std::vector<int> &numeros, std::vector<Color> &colores, int actual) {
+
+    int n = (int)numeros.size();
 
     // Caso base, ya no hay mas numeros para pintar
-    if (actual == (int)numeros.size()) {
-        return valido(numeros, colores) ? cantSinPintar : INFINITO;
+    if (actual == n) {
+        return valido(numeros, colores) ? cuentaSinPintar(colores) : INFINITO;
     }
 
     int minimo = INFINITO;
 
     // Pinto de rojo
     colores[actual] = Rojo;
-    int minConRojo = backtrack_naive(numeros, actual+1, colores, cantSinPintar);
-    minimo = std::min(minimo, minConRojo);
+    int minConRojo = backtrack_naive(numeros, colores, actual+1);
 
     // Pinto de azul
     colores[actual] = Azul;
-    int minConAzul = backtrack_naive(numeros, actual+1, colores, cantSinPintar);
-    minimo = std::min(minimo, minConAzul);
+    int minConAzul = backtrack_naive(numeros, colores, actual+1);
 
     // No pinto
     colores[actual] = Ninguno;
-    int minSinPintar = backtrack_naive(numeros, actual+1, colores, cantSinPintar+1);
-    minimo = std::min(minimo, minSinPintar);
+    int minSinPintar = backtrack_naive(numeros, colores, actual+1);
 
-    return minimo;
+    return min3(minConRojo, minConAzul, minSinPintar);
 }
 
 int resolver_backtracking_naive(int n, const std::vector<int> &numeros) {
     std::vector<Color> colores(n, Ninguno);
-    return backtrack_naive(numeros, 0, colores, 0);
+    return backtrack_naive(numeros, colores, 0);
 }
