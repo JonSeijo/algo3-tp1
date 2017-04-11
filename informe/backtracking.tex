@@ -1,0 +1,31 @@
+\subsubsection{Pseudocódigo}
+
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{backtrack}{secuencia(Colores) $colores$, int $actual$}
+
+\If {$actual = n$}
+
+  \If {Valido($colores$)}
+    \State return CantSinPintar($colores$)
+  \Else
+    \State return $\infty$ 
+  \EndIf
+
+\Else
+
+  \State colores[$actual$] $\gets$ Rojo 
+  \State minimoConRojo $\gets$ backtrack($colores$, $actual + 1$) \\
+
+  \State colores[$actual$] $\gets$ Azul 
+  \State minimoConAzul $\gets$ backtrack($colores$, $actual + 1$) \\
+
+  \State colores[$actual$] $\gets$ Ninguno 
+  \State minimoSinPintar $\gets$ backtrack($colores$, $actual + 1$) \\
+
+  \State return Min($minimoConRojo$, $minimoConAzul$, $minimoSinPintar$) 
+
+\EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
