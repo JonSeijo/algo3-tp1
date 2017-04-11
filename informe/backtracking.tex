@@ -1,4 +1,4 @@
-\subsection{Solución} 
+\subsection{Solución}
 
 Llamo $A$ a la secuencia de números que quiero pintar, y $n$ a la cantidad de elementos en $A$. De todas las secuencias válidas de colores que puedo formar quiero saber cual es la mínima cantidad de elementos que puedo dejar sin pintar. \\
 
@@ -10,7 +10,7 @@ Una vez fijos los colores de los $n$ elementos, reviso si la secuencia de colore
 
 Si la secuencia formada era válida, entonces cuento la cantidad de elementos sin pintar, y devuelvo ese número. La respuesta final es se consigue tomando el mínimo de todos los mínimos. \\
 
-Como detalle de implementación, en caso de que la secuencia formada no sea válida, devuelvo un valor infinito para que no afecte al valor mínimo solución. Ésta siempre existe porque no pintar ningún elemento de ningún color es una solucion válida \textbf{finita}
+Como detalle de implementación, en caso de que la secuencia formada no sea válida, devuelvo un valor infinito para que no afecte al valor mínimo solución. Ésta solución existe porque no pintar ningún elemento de ningún color es siempre una solucion válida \textbf{finita}
 
 
 \subsection{Pseudocodigo}
@@ -24,21 +24,21 @@ Como detalle de implementación, en caso de que la secuencia formada no sea vál
   \If {EsValido($colores$)}
     \State return CantSinPintar($colores$)
   \Else
-    \State return $\infty$ 
+    \State return $\infty$
   \EndIf
 
 \Else
 
-  \State colores[$actual$] $\gets$ Rojo 
+  \State colores[$actual$] $\gets$ Rojo
   \State $minimoConRojo$ $\gets$ backtrack($colores$, $actual + 1$) \\
 
-  \State colores[$actual$] $\gets$ Azul 
+  \State colores[$actual$] $\gets$ Azul
   \State $minimoConAzul$ $\gets$ backtrack($colores$, $actual + 1$) \\
 
-  \State colores[$actual$] $\gets$ Ninguno 
+  \State colores[$actual$] $\gets$ Ninguno
   \State $minimoSinPintar$ $\gets$ backtrack($colores$, $actual + 1$) \\
 
-  \State return Min($minimoConRojo$, $minimoConAzul$, $minimoSinPintar$) 
+  \State return Min($minimoConRojo$, $minimoConAzul$, $minimoSinPintar$)
 
 \EndIf
 \EndProcedure
@@ -46,7 +46,7 @@ Como detalle de implementación, en caso de que la secuencia formada no sea vál
 \end{algorithm}
 
 
-Auxiliares: 
+Auxiliares:
 
 \begin{algorithm}
 \begin{algorithmic}
@@ -72,8 +72,18 @@ Auxiliares:
 
 \subsection{Complejidad}
 
-Explicar por qué es $O(n*3^{n})$
-Revisar bien pero creo que si, puedo demostrarlo haciendo la cuenta
+El algoritmo presentado visita todas las posibles combinaciones de colores. Cada uno de los elementos tiene tres posibilidades, y como hay $n$ elementos, la cantidad de combinaciones posibles es $3^{n}$. Por lo tanto, visitar todas las posibilidades es $O(3^{n})$.
 
-en cada nivel son $3^{k}$ nodos, hay $n-1$ niveles y una hoja cuesta $n$.
-Entonces queda la sumatoria desde 0 hasta $n-1$ de $3^{i} * n$  $=$  $O(n*3^{n})$
+Además, para cada combinación, se revisa en $O(n)$ si es una secuencia valida o no. Por lo tanto, la complejidad total del algoritmo es $O(n * 3^{n})$ \\
+
+Otra forma de verlo es pensando en el arbol de recursión que se va formando al llamar a la función. Cada nivel representa al elemento iésimo de $A$, y cada nodo representa el color del elemento. De todo nodo se desprenden tres posibilidades hasta llegar al nivel $n$. Al llegar a una hoja, se decide si la secuencia \textit{hasta esa hoja} es válida, en tiempo lineal. \\
+
+Sabiendo que en un árbol ternario el nivel \textbf{i} tiene $3^{i}$ nodos, y sabiendo que el arbol tiene $n$ niveles, la cantidad de nodos que se visitan es: \\
+
+$$\sum_{i = 0}^{n} 3^{i} = \frac{3^{n+1}}{2} = O(3^n)$$
+
+El costo de las visitas de nodos no es el total, pues para cada una de las hojas se verifica si la secuencia obtenida es válida o no. Las hojas se encuentran en el útimo nivel $n$, entonces el árbol de recursión tiene $3^n$ hojas, donde cada hoja tiene costo $O(n)$. El costo de operar en las hojas entonces es $3^n * O(n) = O(n * 3^n)$ \\
+
+El costo \textbf{total} es la suma entre visitar todos los nodos y operar en las hojas, es decir:
+
+$$O(3^n) + O(n * 3^n) = O(n * 3^n) $$
