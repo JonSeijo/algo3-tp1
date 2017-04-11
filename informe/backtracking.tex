@@ -13,7 +13,7 @@ Si la secuencia formada era válida, entonces cuento la cantidad de elementos si
 Como detalle de implementación, en caso de que la secuencia formada no sea válida, devuelvo un valor infinito para que no afecte al valor mínimo solución. Ésta solución existe porque no pintar ningún elemento de ningún color es siempre una solucion válida \textbf{finita}
 
 
-\subsection{Pseudocodigo}
+\subsection{Pseudocódigo}
 
 \begin{algorithm}
 \begin{algorithmic}
@@ -87,3 +87,15 @@ El costo de las visitas de nodos no es el total, pues para cada una de las hojas
 El costo \textbf{total} es la suma entre visitar todos los nodos y operar en las hojas, es decir:
 
 $$O(3^n) + O(n * 3^n) = O(n * 3^n) $$
+
+
+\subsection{Poda}
+
+El algoritmo anterior funciona, pero puede mejorarse si tenemos en cuenta algunas observaciones:
+
+\begin{enumerate}
+\item Pueden filtrarse las secuencias válidas a medida que vamos construyendo la secuencia de colores.
+\item Recorriendo de izquierda a derecha, lo único que se necesita para saber si es válido pintar cierto elemento de algun color, es ver el valor del último elemento antes del actual que fue pintado de ese mismo color.
+\item Puede conocerse la cantidad de elementos sin pintar a medida que se va pintando la secuencia.
+\item Si la cantidad de elementos sin pintar es mayor al mínimo entontrado, entonces no vale la pena seguir explorando esa secuencia, pues la cantidad de elementos sin pintar no puede disminuir.
+\end{enumerate}
