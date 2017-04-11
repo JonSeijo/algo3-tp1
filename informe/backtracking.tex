@@ -6,7 +6,7 @@
 
 \If {$actual = n$}
 
-  \If {Valido($colores$)}
+  \If {EsValido($colores$)}
     \State return CantSinPintar($colores$)
   \Else
     \State return $\infty$ 
@@ -15,13 +15,13 @@
 \Else
 
   \State colores[$actual$] $\gets$ Rojo 
-  \State minimoConRojo $\gets$ backtrack($colores$, $actual + 1$) \\
+  \State $minimoConRojo$ $\gets$ backtrack($colores$, $actual + 1$) \\
 
   \State colores[$actual$] $\gets$ Azul 
-  \State minimoConAzul $\gets$ backtrack($colores$, $actual + 1$) \\
+  \State $minimoConAzul$ $\gets$ backtrack($colores$, $actual + 1$) \\
 
   \State colores[$actual$] $\gets$ Ninguno 
-  \State minimoSinPintar $\gets$ backtrack($colores$, $actual + 1$) \\
+  \State $minimoSinPintar$ $\gets$ backtrack($colores$, $actual + 1$) \\
 
   \State return Min($minimoConRojo$, $minimoConAzul$, $minimoSinPintar$) 
 
@@ -29,3 +29,28 @@
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
+
+
+Auxiliares: 
+
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{EsValida}{secuencia(Colores) $colores$}
+
+    \State bool $rojoValido$ $\gets$ EsCreciente(DameRojos($colores$))  \Comment $O(n)$
+    \State bool $azulValido$ $\gets$ EsDecreciente(DameAzules($colores$)) \Comment $O(n)$
+    \State return ($rojoValido \land azulValido$)
+
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{CantSinPintar}{secuencia(Colores) $colores$}
+    \State return Tamaño(DameSinPintar($colores$))  \Comment $O(n)$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
