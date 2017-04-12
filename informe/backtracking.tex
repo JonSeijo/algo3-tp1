@@ -70,6 +70,17 @@ Auxiliares:
 \end{algorithm}
 
 
+Para resolver el problema original, llamo a la función con los siguientes parámetros:
+
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{Resolver naive}{secuencia(int) $A$}
+  \State backtrack($secuenciaColoresVacia(n)$, $0$)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
 \subsection{Complejidad}
 
 El algoritmo presentado visita todas las posibles combinaciones de colores. Cada uno de los elementos tiene tres posibilidades, y como hay $n$ elementos, la cantidad de combinaciones posibles es $3^{n}$. Por lo tanto, visitar todas las posibilidades es $O(3^{n})$.
@@ -97,6 +108,7 @@ El algoritmo anterior funciona, pero puede mejorarse si tenemos en cuenta alguna
 \item Pueden filtrarse las secuencias válidas a medida que vamos construyendo la secuencia de colores.
 \item Recorriendo de izquierda a derecha, lo único que se necesita para saber si es válido pintar cierto elemento de algun color, es ver el valor del último elemento antes del actual que fue pintado de ese mismo color.
 \item Puede conocerse la cantidad de elementos sin pintar a medida que se va pintando la secuencia.
+\item La cantidad de elementos sin pintar \textbf{no} aumenta si se pinta rojo o azul.
 \item Si la cantidad de elementos sin pintar es mayor al mínimo entontrado, entonces no vale la pena seguir explorando esa secuencia, pues la cantidad de elementos sin pintar no puede disminuir.
 \end{enumerate}
 
@@ -105,22 +117,24 @@ Siguiendo la idea principal del algoritmo anterior, pero teniendo en cuenta las 
 
 \begin{algorithm}
 \begin{algorithmic}
-\Procedure{backtrack}{muchos parametros}
+\Procedure{backtrack}{int $actual$, int $ultRojo$, int $ultAzul$, int $cantSinPintar$}
 
 \If {$actual = n$}
-  devolver minimo
+    \State $minimoTotal \gets cantSinPintar$
+    \State return $minimoTotal$
 \Else
 
-  VER EL FILTRADO
+  \If {($ultRojo = n) \lor (A[actual] > A[ultRojo])$}
+    \State $minRojo \gets$ backtrack($actual + 1$, $actual$, $ultAzul$, $cantSinPintar$)
+  \EndIf \\
 
-  \State colores[$actual$] $\gets$ Rojo
-  \State $minimoConRojo$ $\gets$ backtrack($colores$, $actual + 1$) \\
+  \If {($ultAzul = n) \lor (A[actual] < A[ultAzul])$}
+    \State $minAzul \gets$ backtrack($actual + 1$, $ultRojo$, $actual$, $cantSinPintar$)
+  \EndIf \\
 
-  \State colores[$actual$] $\gets$ Azul
-  \State $minimoConAzul$ $\gets$ backtrack($colores$, $actual + 1$) \\
-
-  \State colores[$actual$] $\gets$ Ninguno
-  \State $minimoSinPintar$ $\gets$ backtrack($colores$, $actual + 1$) \\
+  \If{$cantSinPintar + 1 < minimoTotal$}
+    \State $minSinPintar \gets$ backtrack($actual + 1$, $ultRojo$, $ultAzul$, $cantSinPintar + 1$)
+  \EndIf \\
 
   \State return Min($minimoConRojo$, $minimoConAzul$, $minimoSinPintar$)
 
@@ -128,3 +142,18 @@ Siguiendo la idea principal del algoritmo anterior, pero teniendo en cuenta las 
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
+
+
+
+Para resolver el problema original, llamo a la funcion con los siguientes parámetros:
+
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{Resolver poda}{secuencia(int) $A$}
+  \State backtrack($0$, $n$, $n$, $0$)
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+Como detalle de implementación, cuando el último rojo (o azul) es $n$, significa que no hay ningún rojo (o azul) aún, porque los índices del arreglo comienzan en cero.
+
