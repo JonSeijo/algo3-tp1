@@ -1,2 +1,16 @@
 \subsection{Solución (topdown)}
 
+
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{Resolver topdown}{secuencia(int) $A$}
+  \State Matriz3 $DP \gets$ Matriz3($n$, $-1$) \Comment Matriz de 3 dimensiones, llena con $-1$
+    \For {$ultRojo \in [0..n]$}
+        \For {$ultAzul \in [0..n]$}
+            \State $minSinPintar \gets$ Min($minSinPintar$, topdown($n-1$, $ultRojo$, $ultAzul$))
+        \EndFor
+    \EndFor
+    \State return $minSinPintar$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
