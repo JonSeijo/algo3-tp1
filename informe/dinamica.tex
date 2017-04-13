@@ -1,6 +1,8 @@
 \subsection{Solución (topdown)}
 
 
+\subsection{Pseudocódigo (topdown)}
+
 \begin{algorithm}
 \begin{algorithmic}
 \Procedure{Resolver topdown}{secuencia(int) $A$}
@@ -41,17 +43,52 @@
 \begin{algorithm}
 \begin{algorithmic}
 \Procedure{TopdownCasoRojo}{int $actual$, int $ultRojo$, int $ultAzul$} %\Comment($ur$: último rojo;  $ua$: último azul)
+    \Comment Si no hay rojo o si el actual es azul, entonces no puedo considerar que el actual sea rojo
     \If {$(ultRojo = n)  \lor (actual = ultAzul)$}
         \State return $\infty$
     
-    \Else \Comment Si soy el último rojo, ó si puedo serlo porque cumplo la propiedad
+    \Else \Comment Si soy el último rojo, ó si puedo serlo porque cumplo la propiedad:
         \If {($actual = ultRojo$) $\lor$ ($ i < ultRojo \land A[i] < A[ultRojo]$)}
             \State return SoluciónTopdown($actual - 1$, $actual$, $ultAzul$)
         \Else 
             \State return $\infty$
         \EndIf 
     \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
 
+
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{TopdownCasoAzul}{int $actual$, int $ultRojo$, int $ultAzul$} \\ %\Comment($ur$: último rojo;  $ua$: último azul)
+    \Comment Si no hay azul o si el actual es rojo, entonces no puedo considerar que el actual sea azul
+    \If {$(ultAzul = n)  \lor (actual = ultRojo)$}
+        \State return $\infty$
+    
+    \Else \Comment Si soy el último azul, ó si puedo serlo porque cumplo la propiedad:
+        \If {($actual = ultAzul$) $\lor$ ($ i < ultAzul \land A[i] > A[ultAzul]$)}
+            \State return SoluciónTopdown($actual - 1$, $ultAzul$, $actual$)
+        \Else 
+            \State return $\infty$
+        \EndIf 
+    \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+
+
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{TopdownCasoSinPintar}{int $actual$, int $ultRojo$, int $ultAzul$} \\
+    \Comment No puede pasar que el actual sea rojo o azul, pero que lo quiera dejar sin pintar
+    \If {$(actual = ultRojo)  \lor (actual = ultAzul)$}
+        \State return $\infty$
+    \Else 
+        \State return $1 + $  SoluciónTopdown($actual - 1$, $ultRojo$, $ultAzul$)
+    \EndIf
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
