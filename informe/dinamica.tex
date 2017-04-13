@@ -12,11 +12,20 @@ Llamo Solución($i$, $ur$, $ua$) a la función que devuelve la mínima cantidad 
 
 Analizo Solución($i$, $ur$, $ua$). Para el elemento en la posicion $i$ (dados un $ur$ y un $ua$) existen 3 casos \\
 
-- \textbf{No lo pinto}: En este caso, la cantidad de elementos sin pintar \textbf{aumenta en uno} con respecto al mínimo hasta $i-1$. Es decir, la solución es igual a $1 + $Solución($i-1$, $ur$, $ua$)
+- \textbf{No lo pinto}: En este caso, la cantidad de elementos sin pintar \textbf{aumenta en uno} con respecto al mínimo hasta $i-1$. Es decir, la solución es igual a $1 + $Solución($i-1$, $ur$, $ua$) \\
 
-- \textbf{Pinto $i$ de rojo}:
+- \textbf{Pinto $i$ de rojo}: 
+\begin{enumerate}
+\item Si estoy en la rama donde no hay rojo ($ultRojo = n$), o si estoy en la rama donde el último azul era $i$, entonces no puede ser que $i$ sea rojo, por lo que no hay solución. (Devuelvo $\infty$)
+\item Si $i$ es el último rojo, o si es posible que $i$ sea color rojo (pues no rompe la propiedad) entonces la solución es la misma que la solución hasta $i-1$ siendo que $i$ es el último rojo. Es decir, es igual a Solución($i-1$, $i$, $ua$)
+\item Si no era posible que $i$ sea rojo, entonces no hay solucion para este caso. (Devuelvo $\infty$)
+\end{enumerate} 
 
+- \textbf{Pinto $i$ de azul}:  Análogo al caso de pintar con rojo  \\
 
+Al final de la funcion Solución($i$, $ur$, $ua$) devuelvo el mínimo de los tres casos. El valor de la solución para esos parámetros lo guardo en una matriz para poder acceder a él y no recalcularlo. \\
+
+Para resolver el problema, tomo el mínimo de todas las soluciones posibles (para todo $ur$ y $ua$) hasta el n-ésimo elemento.
 
 \subsection{Pseudocódigo topdown}
 
@@ -57,7 +66,7 @@ Analizo Solución($i$, $ur$, $ua$). Para el elemento en la posicion $i$ (dados u
 
 \begin{algorithm}[H]
 \begin{algorithmic}
-\Procedure{TopdownCasoRojo}{int $actual$, int $ultRojo$, int $ultAzul$} %\Comment($ur$: último rojo;  $ua$: último azul)
+\Procedure{TopdownCasoRojo}{int $actual$, int $ultRojo$, int $ultAzul$} \\ 
     \Comment Si no hay rojo o si el actual es azul, entonces no puedo considerar que el actual sea rojo
     \If {$(ultRojo = n)  \lor (actual = ultAzul)$}
         \State return $\infty$
@@ -76,7 +85,7 @@ Analizo Solución($i$, $ur$, $ua$). Para el elemento en la posicion $i$ (dados u
 
 \begin{algorithm}[H]
 \begin{algorithmic}
-\Procedure{TopdownCasoAzul}{int $actual$, int $ultRojo$, int $ultAzul$} \\ %\Comment($ur$: último rojo;  $ua$: último azul)
+\Procedure{TopdownCasoAzul}{int $actual$, int $ultRojo$, int $ultAzul$} \\ 
     \Comment Si no hay azul o si el actual es rojo, entonces no puedo considerar que el actual sea azul
     \If {$(ultAzul = n)  \lor (actual = ultRojo)$}
         \State return $\infty$
