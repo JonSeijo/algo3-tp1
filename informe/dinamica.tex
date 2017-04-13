@@ -2,19 +2,19 @@
 
 Generar todas las combinaciones es muy caro computacionalmente. Se puede conseguir algo mejor si pensamos el problema desde otro ángulo. \\
 
-Supongamos que ya tenemos el valor minimo de elementos sin pintar dado que el i-ésimo es el ultimo rojo y el j-ésimo es el último azul. De este modo, lo único que tendríamos que hacer es tomar el mínimo de todos los resultados dados los ultimos rojos y azules. \\
+Supongamos que para todo ($i$, $j$) ya tenemos el valor mínimo de elementos sin pintar dado que el $i$-ésimo es el último rojo y el $j$-ésimo es el último azul. De este modo, lo único que tendríamos que hacer es tomar el mínimo de todas las combinaciones de los últimos rojos y azules. Esto es así porque de todas las posibles soluciones para un último rojo y último azul fijos, hay una combinación que es óptima, y es ésta la que nos interesa obtener. \\
 
-Entonces nuestro problema se reduce a: suponiedo que la secuencia tiene el último rojo y el último azul en posiciones fijas, ¿cuál es la minima cantidad de elementos sin pintar que podemos obtener? \\
+Entonces nuestro problema se reduce a: suponiedo que la secuencia tiene el último rojo y el último azul en posiciones fijas, ¿cuál es la mínima cantidad de elementos sin pintar que podemos obtener? \\
 
-Las observaciones claves son las siguientes:
+Llamo Solución($i$, $ur$, $ua$) a la función que devuelve la mínima cantidad sin pintar hasta $A$[$i$] siendo que el elemento en $ur$ es el último rojo y el elemento en $ua$ es el último azul. (Si $ur$ o $ua$ es $n$, represento que no hay rojo o azul) \\
 
-\begin{enumerate}
-\item Se quiere obtener el
-\item Recorriendo de izquierda a derecha, lo único que se necesita para saber si es válido pintar cierto elemento de algun color, es ver el valor del último elemento antes del actual que fue pintado de ese mismo color.
-\item Puede conocerse la cantidad de elementos sin pintar a medida que se va pintando la secuencia.
-\item La cantidad de elementos sin pintar \textbf{no} aumenta si se pinta rojo o azul.
-\item Si la cantidad de elementos sin pintar es mayor al mínimo entontrado, entonces no vale la pena seguir explorando esa secuencia, pues la cantidad de elementos sin pintar no puede disminuir.
-\end{enumerate}
+%Cuando $i$ es menor a cero, la respuesta es cero
+
+Analizo Solución($i$, $ur$, $ua$). Para el elemento en la posicion $i$ (dados un $ur$ y un $ua$) existen 3 casos \\
+
+- \textbf{No lo pinto}: En este caso, la cantidad de elementos sin pintar \textbf{aumenta en uno} con respecto al mínimo hasta $i-1$. Es decir, la solución es igual a $1 + $Solución($i-1$, $ur$, $ua$)
+
+- \textbf{Pinto $i$ de rojo}:
 
 
 
