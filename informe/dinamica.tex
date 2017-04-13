@@ -7,10 +7,51 @@
   \State Matriz3 $DP \gets$ Matriz3($n$, $-1$) \Comment Matriz de 3 dimensiones, llena con $-1$
     \For {$ultRojo \in [0..n]$}
         \For {$ultAzul \in [0..n]$}
-            \State $minSinPintar \gets$ Min($minSinPintar$, topdown($n-1$, $ultRojo$, $ultAzul$))
+            \State $minSinPintar \gets$ Min($minSinPintar$, SoluciónTopdown($n-1$, $ultRojo$, $ultAzul$))
         \EndFor
     \EndFor
     \State return $minSinPintar$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{SoluciónTopdown}{int $actual$, int $ultRojo$, int $ultAzul$} %\Comment($ur$: último rojo;  $ua$: último azul)
+
+    \If {$actual = -1$}
+        return $0$
+    \EndIf
+    \If {DP[$actual$][$ultRojo$][$ultAzul$] $\neq -1$}
+        return DP[$actual$][$ultRojo$][$ultAzul$]
+    \EndIf \\
+
+    \State $minRojo \gets$ TopdownCasoRojo($actual$, $ultRojo$, $ultAzul$)
+    \State $minAzul \gets$ TopdownCasoAzul($actual$, $ultRojo$, $ultAzul$)
+    \State $minSinPintar \gets$ TopdownCasoSinPintar($actual$, $ultRojo$, $ultAzul$) \\
+
+    \State return Min($minRojo$, $minAzul$, $minSinPintar$)
+    
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}
+\begin{algorithmic}
+\Procedure{TopdownCasoRojo}{int $actual$, int $ultRojo$, int $ultAzul$} %\Comment($ur$: último rojo;  $ua$: último azul)
+    \If {$(ultRojo = n)  \lor (actual = ultAzul)$}
+        \State return $\infty$
+    
+    \Else \Comment Si soy el último rojo, ó si puedo serlo porque cumplo la propiedad
+        \If {($actual = ultRojo$) $\lor$ ($ i < ultRojo \land A[i] < A[ultRojo]$)}
+            \State return SoluciónTopdown($actual - 1$, $actual$, $ultAzul$)
+        \Else 
+            \State return $\infty$
+        \EndIf 
+    \EndIf
+
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
