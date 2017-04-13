@@ -15,7 +15,7 @@ Como detalle de implementación, en caso de que la secuencia formada no sea vál
 
 \subsection{Pseudocódigo}
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \begin{algorithmic}
 \Procedure{backtrack}{secuencia(Colores) $colores$, int $actual$}
 
@@ -48,7 +48,7 @@ Como detalle de implementación, en caso de que la secuencia formada no sea vál
 
 Auxiliares:
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \begin{algorithmic}
 \Procedure{EsValida}{secuencia(Colores) $colores$}
 
@@ -61,7 +61,7 @@ Auxiliares:
 \end{algorithm}
 
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \begin{algorithmic}
 \Procedure{CantSinPintar}{secuencia(Colores) $colores$}
     \State return Tamaño(DameSinPintar($colores$))  \Comment $O(n)$
@@ -72,7 +72,7 @@ Auxiliares:
 
 Para resolver el problema original, llamo a la función con los siguientes parámetros:
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \begin{algorithmic}
 \Procedure{Resolver naive}{secuencia(int) $A$}
   \State backtrack($secuenciaColoresVacia(n)$, $0$)
@@ -100,7 +100,7 @@ El costo \textbf{total} es la suma entre visitar todos los nodos y operar en las
 $$O(3^n) + O(n * 3^n) = O(n * 3^n) $$
 
 
-\subsection{Poda}
+\subsection{Solución con poda}
 
 El algoritmo anterior funciona, pero puede mejorarse si tenemos en cuenta algunas observaciones:
 
@@ -116,7 +116,7 @@ El algoritmo anterior funciona, pero puede mejorarse si tenemos en cuenta alguna
 
 Siguiendo la idea principal del algoritmo anterior, pero teniendo en cuenta las nuevas ideas, podemos mejorar nuestro algoritmo:
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \begin{algorithmic}
 \Procedure{backtrack}{int $actual$, int $ultRojo$, int $ultAzul$, int $cantSinPintar$}
 
@@ -148,7 +148,7 @@ Siguiendo la idea principal del algoritmo anterior, pero teniendo en cuenta las 
 
 Para resolver el problema original, llamo a la funcion con los siguientes parámetros:
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \begin{algorithmic}
 \Procedure{Resolver poda}{secuencia(int) $A$}
   \State backtrack($0$, $n$, $n$, $0$)
