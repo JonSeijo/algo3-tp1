@@ -10,7 +10,7 @@ Aca va la explicacion de la solucion y el por que el algoritmo es correcto
   \State Matriz3 $DP \gets$ Matriz3($n$, $-1$) \Comment Matriz de 3 dimensiones, llena con $-1$
     \For {$ultRojo \in [0..n]$}
         \For {$ultAzul \in [0..n]$}
-            \State $minSinPintar \gets$ Min($minSinPintar$, SoluciónTopdown($n-1$, $ultRojo$, $ultAzul$))
+            \State $minSinPintar \gets$ Min($minSinPintar$, Solución($n-1$, $ultRojo$, $ultAzul$))
         \EndFor
     \EndFor
     \State return $minSinPintar$
@@ -21,7 +21,7 @@ Aca va la explicacion de la solucion y el por que el algoritmo es correcto
 
 \begin{algorithm}[H]
 \begin{algorithmic}
-\Procedure{SoluciónTopdown}{int $actual$, int $ultRojo$, int $ultAzul$} %\Comment($ur$: último rojo;  $ua$: último azul)
+\Procedure{Solución}{int $actual$, int $ultRojo$, int $ultAzul$} %\Comment($ur$: último rojo;  $ua$: último azul)
     \If {$actual = -1$}
         return $0$
     \EndIf
@@ -48,7 +48,7 @@ Aca va la explicacion de la solucion y el por que el algoritmo es correcto
     
     \Else \Comment Si soy el último rojo, ó si puedo serlo porque cumplo la propiedad:
         \If {($actual = ultRojo$) $\lor$ ($ i < ultRojo \land A[i] < A[ultRojo]$)}
-            \State return SoluciónTopdown($actual - 1$, $actual$, $ultAzul$)
+            \State return Solución($actual - 1$, $actual$, $ultAzul$)
         \Else 
             \State return $\infty$
         \EndIf 
@@ -67,7 +67,7 @@ Aca va la explicacion de la solucion y el por que el algoritmo es correcto
     
     \Else \Comment Si soy el último azul, ó si puedo serlo porque cumplo la propiedad:
         \If {($actual = ultAzul$) $\lor$ ($ i < ultAzul \land A[i] > A[ultAzul]$)}
-            \State return SoluciónTopdown($actual - 1$, $ultAzul$, $actual$)
+            \State return Solución($actual - 1$, $ultAzul$, $actual$)
         \Else 
             \State return $\infty$
         \EndIf 
@@ -84,7 +84,7 @@ Aca va la explicacion de la solucion y el por que el algoritmo es correcto
     \If {$(actual = ultRojo)  \lor (actual = ultAzul)$}
         \State return $\infty$
     \Else 
-        \State return $1 + $  SoluciónTopdown($actual - 1$, $ultRojo$, $ultAzul$)
+        \State return $1 + $  Solución($actual - 1$, $ultRojo$, $ultAzul$)
     \EndIf
 \EndProcedure
 \end{algorithmic}
