@@ -1,5 +1,7 @@
 \subsection{Solución topdown}
 
+ LA INTRODUCCION ESTA QUEDARIA MEJOR EN EL BOTTOMUP CREO
+
 Generar todas las combinaciones es muy caro computacionalmente. Se puede conseguir algo mejor si pensamos el problema desde otro ángulo. \\
 
 Supongamos que para todo ($i$, $j$) ya tenemos el valor mínimo de elementos sin pintar dado que el $i$-ésimo es el último rojo y el $j$-ésimo es el último azul. De este modo, lo único que tendríamos que hacer es tomar el mínimo de todas las combinaciones de los últimos rojos y azules. Esto es así porque de todas las posibles soluciones para un último rojo y último azul fijos, hay una combinación que es óptima, y es ésta la que nos interesa obtener. \\
@@ -118,4 +120,11 @@ Para resolver el problema, tomo el mínimo de todas las soluciones posibles (par
 
 \subsection{Complejidad}
 
-Aca va la justificacion de por que el algoritmo topdown es $n^3$, consultar mis notas para orientacion
+Se quiere calcular la complejidad de $Resolver topdown$. \\
+
+Al principio se crea una matriz de tres dimensiones llen con $-1$, de tamaño $n$ por cada lado. Esto tiene un costo de $O(n^3)$.
+
+Para cada una de las $n^2$ combinaciones de $ur$ y $ua$, se llama a Solucion(). Considerando parámetros fijos en Solución(), tenemos dos posibilidades. Si el valor ya fue calculado, se devuelve el valor en $O(1)$. Si no fue calculado, se hacen $O(1)$ llamados recursivos. Considerando estos llamados recursivos .. 
+
+
+CREO QUE ME CONVIENE EXPLICAR PRIMERO BOTTOM UP PORQUE ES MUCHISIMO MAS FACIL ANALIZAR LA COMPLEJIDAD AHI

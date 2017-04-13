@@ -3,6 +3,8 @@ int topdown_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int
 int topdown_caso_azul(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);
 int topdown_caso_nada(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);
 
+int contador = 0;
+
 
 int topdown_sol(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
     if (i == -1) {
@@ -10,6 +12,7 @@ int topdown_sol(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
     }
 
     if (DP[i][ur][ua] != -1) {
+        contador++;
         return DP[i][ur][ua];
     }
 
@@ -104,5 +107,8 @@ int resolver_dp_topdown(int n, const std::vector<int> &numeros) {
             // }
         }
     }
+
+    std::cout << "CANTIDAD DE ACCESOS A DP: " << contador << "\n";
+
     return min_abs;
 }
