@@ -1,6 +1,22 @@
 \subsection{Solución topdown}
 
-Aca va la explicacion de la solucion y el por que el algoritmo es correcto
+Generar todas las combinaciones es muy caro computacionalmente. Se puede conseguir algo mejor si pensamos el problema desde otro ángulo. \\
+
+Supongamos que ya tenemos el valor minimo de elementos sin pintar dado que el i-ésimo es el ultimo rojo y el j-ésimo es el último azul. De este modo, lo único que tendríamos que hacer es tomar el mínimo de todos los resultados dados los ultimos rojos y azules. \\
+
+Entonces nuestro problema se reduce a: suponiedo que la secuencia tiene el último rojo y el último azul en posiciones fijas, ¿cuál es la minima cantidad de elementos sin pintar que podemos obtener? \\
+
+Las observaciones claves son las siguientes:
+
+\begin{enumerate}
+\item Se quiere obtener el
+\item Recorriendo de izquierda a derecha, lo único que se necesita para saber si es válido pintar cierto elemento de algun color, es ver el valor del último elemento antes del actual que fue pintado de ese mismo color.
+\item Puede conocerse la cantidad de elementos sin pintar a medida que se va pintando la secuencia.
+\item La cantidad de elementos sin pintar \textbf{no} aumenta si se pinta rojo o azul.
+\item Si la cantidad de elementos sin pintar es mayor al mínimo entontrado, entonces no vale la pena seguir explorando esa secuencia, pues la cantidad de elementos sin pintar no puede disminuir.
+\end{enumerate}
+
+
 
 \subsection{Pseudocódigo topdown}
 
