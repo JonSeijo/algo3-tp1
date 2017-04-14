@@ -18,6 +18,7 @@ path_bottomup = "datos/bottomup/"
 path_random = "random.csv"
 path_creciente = "creciente.csv"
 path_decreciente = "decreciente.csv"
+path_iguales = "iguales.csv"
 
 tipo_naive = "naive"
 tipo_poda = "poda"
@@ -37,7 +38,7 @@ def args_lista_random(tipo, n):
 def exp_random(tipo, archivo, tamMaximo):
     with open(archivo, 'w') as f:
         for tam in range(1, tamMaximo+1):   # Instancias de tamaño n
-            print("Instancias random de tamaño: " + str(tam))
+            print("Random " + str(tipo) + " de tamaño: " + str(tam))
             print("\nn:" + str(tam), file=f)
             for r in range(repes):   
                 # Repito repes veces las pruebas con cada tamaño 
@@ -78,6 +79,22 @@ def exp_decreciente(tipo, archivo, tamMaximo):
                 print(str(output.decode()), file=f, end=""),
 
 
+def args_lista_iguales(tipo, n):
+    return [ejecutable, tipo, str(n)] + [1 for i in range(n)]
+
+
+def exp_iguales(tipo, archivo, tamMaximo):
+    with open(archivo, 'w') as f:
+        for tam in range(1, tamMaximo+1):   # Instancias de tamaño n
+            print("Iguales " + str(tipo) + " de tamaño: " + str(tam))
+            print("\nn:" + str(tam), file=f)
+            for r in range(repes):   
+                # Repito repes veces las pruebas con cada tamaño 
+                # (instancias aleatorias cada vez) para ver mejor el caso promedio
+                output = subprocess.check_output(args_lista_iguales(tipo, tam))
+                print(str(output.decode()), file=f, end=""),
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     
@@ -112,10 +129,10 @@ if __name__ == '__main__':
     if args.random:
         print ("Inicia RANDOM")
         start_time = time.time()
-        exp_creciente(tipo_naive, path_naive + path_random, n_maximo_naive)
-        exp_creciente(tipo_poda, path_poda + path_random, n_maximo_poda)
-        exp_creciente(tipo_topdown, path_topdown + path_random, n_maximo_topdown)
-        exp_creciente(tipo_bottomup, path_bottomup + path_random, n_maximo_bottomup)
+        exp_random(tipo_naive, path_naive + path_random, n_maximo_naive)
+        exp_random(tipo_poda, path_poda + path_random, n_maximo_poda)
+        exp_random(tipo_topdown, path_topdown + path_random, n_maximo_topdown)
+        exp_random(tipo_bottomup, path_bottomup + path_random, n_maximo_bottomup)
         print("--- %s seconds ---" % (time.time() - start_time))
 
     if args.creciente:
@@ -134,6 +151,15 @@ if __name__ == '__main__':
         exp_decreciente(tipo_poda, path_poda + path_decreciente, n_maximo_poda)
         exp_decreciente(tipo_topdown, path_topdown + path_decreciente, n_maximo_topdown)
         exp_decreciente(tipo_bottomup, path_bottomup + path_decreciente, n_maximo_bottomup)
+        print("--- %s seconds ---" % (time.time() - start_time))
+
+    if args.iguales:
+        print ("Inicia IGUALES")
+        start_time = time.time()
+        exp_iguales(tipo_naive, path_naive + path_iguales, n_maximo_naive)
+        exp_iguales(tipo_poda, path_poda + path_iguales, n_maximo_poda)
+        exp_iguales(tipo_topdown, path_topdown + path_iguales, n_maximo_topdown)
+        exp_iguales(tipo_bottomup, path_bottomup + path_iguales, n_maximo_bottomup)
         print("--- %s seconds ---" % (time.time() - start_time))
         
 
