@@ -18,20 +18,18 @@ Veamos ahora DP[$i$][$ur$][$ua$] para el elemento en la posición $i$ (dados un 
 
 - \textbf{Pinto $i$ de rojo}: 
 \begin{enumerate}
-\item Si estoy en la rama donde no hay rojo ($ultRojo = n$), o si estoy en la rama donde el último azul era $i$, entonces no puede ser que $i$ sea rojo, por lo que no hay solución. (Devuelvo $\infty$)
 \item Si $i$ es el último rojo, o si es posible que $i$ sea color rojo (pues no rompe la propiedad) entonces la solución es la misma que la solución hasta $i-1$ siendo que $i$ es el último rojo. Es decir, es igual a DP[$i-1$][$i$][$ua$]
+\item Si estoy en la rama donde no hay rojo ($ultRojo = n$), o si estoy en la rama donde el último azul era $i$, entonces no puede ser que $i$ sea rojo, por lo que no hay solución. (Devuelvo $\infty$)
 \item Si no era posible que $i$ sea rojo, entonces no hay solucion para este caso. (Devuelvo $\infty$)
 \end{enumerate} 
 
 - \textbf{Pinto $i$ de azul}:  Análogo al caso de pintar con rojo  \\
 
-Cuando termina la iteración, DP[$i$][$ur$][$ua$] contiene el mínimo de los tres casos. En todos los cosas, sé que el caso óptimo anterior que utilizo para calcular la solución actual ya esta calculado porque los voy calculando en orden. \\
+Cuando termina la iteración, DP[$i$][$ur$][$ua$] contiene el mínimo de los tres casos. En todos los casos, sé que el óptimo anterior que utilizo para calcular la solución actual ya está calculado porque los voy calculando en orden. \\
 
 La solución total del problema, es el mínimo valor hasta $i = n$ considerando todas las combinaciones de $ur$ y $ua$.
 
 \subsection{Pseudocódigo bottomup}
-
-
 
 \begin{algorithm}[H]
 \begin{algorithmic}
@@ -58,7 +56,6 @@ La solución total del problema, es el mínimo valor hasta $i = n$ considerando 
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
-
 
 
 \begin{algorithm}[H]
@@ -106,4 +103,9 @@ La solución total del problema, es el mínimo valor hasta $i = n$ considerando 
 
 \subsection{Complejidad}
 
-sarsa sarasa es $O(n^3)$
+Crear la Matriz de tres dimensiones de tamaño $n$, cuesta $O(n^3)$. Llenar los casos bases cuesta $O(n^2)$.
+Luego aparecen tres ciclos anidados, cada uno de ellos de tamaño $n$. En el cuerpo se ejecutan solo $O(1)$ comparaciones, asignaciones y accesos a arreglo. El costo de los tres ciclos principales es $O(n^3)$ 
+Se devuelve el mínimo de las $n^2$ combinaciones de $ur$ y $ua$, en $O(n^2)$. 
+
+El costo total es: 
+$$O(n^3) + O(n^2) + O(n^3) + O(n^2) = O(n^3)$$
