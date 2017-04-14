@@ -1,28 +1,5 @@
 \subsection{Solución topdown}
 
-%  LA INTRODUCCION ESTA QUEDARIA MEJOR EN EL BOTTOMUP CREO
-
-% Llamo Solución($i$, $ur$, $ua$) a la función que devuelve la mínima cantidad sin pintar hasta $A$[$i$] siendo que el elemento en $ur$ es el último rojo y el elemento en $ua$ es el último azul. (Si $ur$ o $ua$ es $n$, represento que no hay rojo o azul) \\
-
-% %Cuando $i$ es menor a cero, la respuesta es cero
-
-% Analizo Solución($i$, $ur$, $ua$). Para el elemento en la posicion $i$ (dados un $ur$ y un $ua$) existen 3 casos \\
-
-% - \textbf{No lo pinto}: En este caso, la cantidad de elementos sin pintar \textbf{aumenta en uno} con respecto al mínimo hasta $i-1$. Es decir, la solución es igual a $1 + $Solución($i-1$, $ur$, $ua$) \\
-
-% - \textbf{Pinto $i$ de rojo}: 
-% \begin{enumerate}
-% \item Si estoy en la rama donde no hay rojo ($ultRojo = n$), o si estoy en la rama donde el último azul era $i$, entonces no puede ser que $i$ sea rojo, por lo que no hay solución. (Devuelvo $\infty$)
-% \item Si $i$ es el último rojo, o si es posible que $i$ sea color rojo (pues no rompe la propiedad) entonces la solución es la misma que la solución hasta $i-1$ siendo que $i$ es el último rojo. Es decir, es igual a Solución($i-1$, $i$, $ua$)
-% \item Si no era posible que $i$ sea rojo, entonces no hay solucion para este caso. (Devuelvo $\infty$)
-% \end{enumerate} 
-
-% - \textbf{Pinto $i$ de azul}:  Análogo al caso de pintar con rojo  \\
-
-% Al final de la funcion Solución($i$, $ur$, $ua$) devuelvo el mínimo de los tres casos. El valor de la solución para esos parámetros lo guardo en una matriz para poder acceder a él y no recalcularlo. \\
-
-% Para resolver el problema, tomo el mínimo de todas las soluciones posibles (para todo $ur$ y $ua$) hasta el n-ésimo elemento.
-
 Muy similar al enfoque BottomUp, pero calculando de forma recursiva. En vez de comenzar desde $i = 0$ hacia adelante, comienzo desde $i = n$ hacia atrás. \\
 
 Solución($i$, $ur$, $ua$) devuelve la mínima cantidad sin pintar que pueden usarse hasta $i$, siendo $ur$ el último rojo y siendo $ua$ el último azul. Las soluciones se van a ir calculando recursivamente (pues cada solución necesita de la anterior) y voy almacenando los resultados en la matriz DP. \\
