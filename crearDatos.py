@@ -27,7 +27,7 @@ tipo_bottomup = "bottomup"
 
 repes = 20
 cota_valor_maximo = 1000000
-n_maximo_naive = 16
+n_maximo_naive = 15
 n_maximo_poda = 42 # Con 38 tarda 22 segundos
 n_maximo_topdown = 95 # Con 100 tarda 1 minuto
 n_maximo_bottomup = 145 # 145 en 154 segundos
@@ -37,15 +37,23 @@ def args_lista_random(tipo, n):
 
 def exp_random(tipo, archivo, tamMaximo):
     with open(archivo, 'w') as f:
+        # header
+        for header in range(repes):   
+            # Repito repes veces las pruebas con cada tamaño 
+            # (instancias aleatorias cada vez) para ver mejor el caso promedio
+            # output = subprocess.check_output(args_lista_random(tipo, tam))
+            print("R" + str(header) + "," , file=f, end=""),
+        print("", file=f)
+
         for tam in range(1, tamMaximo+1):   # Instancias de tamaño n
             print("Random " + str(tipo) + " de tamaño: " + str(tam))
-            print("\nn:" + str(tam), file=f)
+            # print("\nn:" + str(tam), file=f)
             for r in range(repes):   
                 # Repito repes veces las pruebas con cada tamaño 
                 # (instancias aleatorias cada vez) para ver mejor el caso promedio
                 output = subprocess.check_output(args_lista_random(tipo, tam))
                 print(str(output.decode()), file=f, end=""),
-
+            print("", file=f)
 
 def args_lista_creciente(tipo, n):
     return [ejecutable, tipo, str(n)] + [i for i in range(n)]
@@ -53,14 +61,23 @@ def args_lista_creciente(tipo, n):
 
 def exp_creciente(tipo, archivo, tamMaximo):
     with open(archivo, 'w') as f:
+        # header
+        for header in range(repes):   
+            # Repito repes veces las pruebas con cada tamaño 
+            # (instancias aleatorias cada vez) para ver mejor el caso promedio
+            # output = subprocess.check_output(args_lista_random(tipo, tam))
+            print("R" + str(header) + "," , file=f, end=""),
+        print("", file=f)
+
         for tam in range(1, tamMaximo+1):   # Instancias de tamaño n
             print("Crecientes " + str(tipo) + " de tamaño: " + str(tam))
-            print("\nn:" + str(tam), file=f)
+            # print("\nn:" + str(tam), file=f)
             for r in range(repes):   
                 # Repito repes veces las pruebas con cada tamaño 
                 # (instancias aleatorias cada vez) para ver mejor el caso promedio
                 output = subprocess.check_output(args_lista_creciente(tipo, tam))
                 print(str(output.decode()), file=f, end=""),
+            print("", file=f)
 
 
 def args_lista_decreciente(tipo, n):
@@ -69,14 +86,24 @@ def args_lista_decreciente(tipo, n):
 
 def exp_decreciente(tipo, archivo, tamMaximo):
     with open(archivo, 'w') as f:
+        # header
+        for header in range(repes):   
+            # Repito repes veces las pruebas con cada tamaño 
+            # (instancias aleatorias cada vez) para ver mejor el caso promedio
+            # output = subprocess.check_output(args_lista_random(tipo, tam))
+            print("R" + str(header) + "," , file=f, end=""),
+        print("", file=f)
+
         for tam in range(1, tamMaximo+1):   # Instancias de tamaño n
             print("Decrecientes " + str(tipo) + " de tamaño: " + str(tam))
-            print("\nn:" + str(tam), file=f)
+            # print("\nn:" + str(tam), file=f)
             for r in range(repes):   
                 # Repito repes veces las pruebas con cada tamaño 
                 # (instancias aleatorias cada vez) para ver mejor el caso promedio
                 output = subprocess.check_output(args_lista_decreciente(tipo, tam))
                 print(str(output.decode()), file=f, end=""),
+
+            print("", file=f)
 
 
 def args_lista_iguales(tipo, n):
@@ -85,15 +112,23 @@ def args_lista_iguales(tipo, n):
 
 def exp_iguales(tipo, archivo, tamMaximo):
     with open(archivo, 'w') as f:
+        # header
+        for header in range(repes):   
+            # Repito repes veces las pruebas con cada tamaño 
+            # (instancias aleatorias cada vez) para ver mejor el caso promedio
+            # output = subprocess.check_output(args_lista_random(tipo, tam))
+            print("R" + str(header) + "," , file=f, end=""),
+        print("", file=f)
+
         for tam in range(1, tamMaximo+1):   # Instancias de tamaño n
             print("Iguales " + str(tipo) + " de tamaño: " + str(tam))
-            print("\nn:" + str(tam), file=f)
+            # print("\nn:" + str(tam), file=f)  
             for r in range(repes):   
                 # Repito repes veces las pruebas con cada tamaño 
                 # (instancias aleatorias cada vez) para ver mejor el caso promedio
                 output = subprocess.check_output(args_lista_iguales(tipo, tam))
                 print(str(output.decode()), file=f, end=""),
-
+            print("", file=f)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -112,13 +147,13 @@ if __name__ == '__main__':
     parser.add_argument("-bottomup_random", help="Bottomup con listas random."
              + " Tamaño maximo: " + str(n_maximo_bottomup), action='store_true')
 
-    parser.add_argument("-random", help="Todos las tecnicas con inputs randon")
+    parser.add_argument("-random", help="Todos las tecnicas con inputs randon", action='store_true')
 
-    parser.add_argument("-creciente", help="Todos las tecnicas con inputs crecientes")
+    parser.add_argument("-creciente", help="Todos las tecnicas con inputs crecientes", action='store_true')
 
-    parser.add_argument("-decreciente", help="Todos las tecnicas con inputs decrecientes")
+    parser.add_argument("-decreciente", help="Todos las tecnicas con inputs decrecientes", action='store_true')
     
-    parser.add_argument("-iguales", help="Todos las tecnicas con inputs iguales")
+    parser.add_argument("-iguales", help="Todos las tecnicas con inputs iguales", action='store_true')
 
     parser.add_argument("--repes", help="Cantidad de repeticiones", default=repes, type=int)
 

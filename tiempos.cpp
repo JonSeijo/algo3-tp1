@@ -24,14 +24,14 @@ void medir_DP_topdown(int n, std::vector<int> &numeros) {
     auto start = ya();
     resolver_dp_topdown(n, numeros);
     auto end = ya();
-    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count() << ";";    
+    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count() << ",";    
 }
 
 void medir_DP_bottomup(int n, std::vector<int> &numeros) {
     auto start = ya();
     resolver_dp_bottomup(n, numeros);
     auto end = ya();
-    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count() << ";";    
+    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count() << ",";    
 }
 
 void medir_DP(int n, std::vector<int> &numeros) {
@@ -43,14 +43,14 @@ void medirBacktrackNaive(int n, std::vector<int> &numeros) {
     auto start = ya();
     resolver_backtracking_naive(n, numeros);
     auto end = ya();
-    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count() << ";";
+    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count() << ",";
 }
 
 void medirBacktrackPoda(int n, std::vector<int> &numeros) {
     auto start = ya();
     resolver_backtracking_poda(n, numeros);
     auto end = ya();
-    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count() << ";";    
+    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count() << ",";    
 }
 
 void medirBacktrack(int n, std::vector<int> &numeros) {
