@@ -1,7 +1,37 @@
 \subsection{Solución bottomup}
 
+Generar todas las combinaciones es muy caro computacionalmente. Se puede conseguir algo mejor si pensamos el problema desde otro ángulo. \\
+
+Supongamos que para todo ($i$, $j$) ya tenemos el valor mínimo de elementos sin pintar dado que el $i$-ésimo es el último rojo y el $j$-ésimo es el último azul. De este modo, lo único que tendríamos que hacer es tomar el mínimo de todas las combinaciones de los últimos rojos y azules. Esto es así porque de todas las posibles soluciones para un último rojo y último azul fijos, hay una combinación que es óptima, y es ésta la que nos interesa obtener. \\
+
+Entonces nuestro problema se reduce a: suponiedo que la secuencia tiene el último rojo y el último azul en posiciones fijas, ¿cuál es la mínima cantidad de elementos sin pintar que podemos obtener? \\
+
+Llamo DP[$i$][$ur$][$ua$] a la mínima cantidad sin pintar hasta $A$[$i$] siendo que el elemento en $ur$ es el último rojo y el elemento en $ua$ es el último azul. (Si $ur$ o $ua$ es $n$, represento que no hay rojo o azul) \\
+
+La idea es ir llenando la matriz DP en orden, para encontrar los valores minimos hasta legar a $i = n$. \\
+
+En los casos base donde $i$ es 0, lleno la matriz con ceros. \\
+
+Veamos ahora DP[$i$][$ur$][$ua$] para el elemento en la posición $i$ (dados un $ur$ y un $ua$) existen 3 casos \\
+
+- \textbf{No lo pinto}: En este caso, la cantidad de elementos sin pintar \textbf{aumenta en uno} con respecto al mínimo hasta $i-1$. Es decir, la solución es igual a $1 + $DP[$i-1$][$ur$][$ua$] \\
+
+- \textbf{Pinto $i$ de rojo}: 
+\begin{enumerate}
+\item Si estoy en la rama donde no hay rojo ($ultRojo = n$), o si estoy en la rama donde el último azul era $i$, entonces no puede ser que $i$ sea rojo, por lo que no hay solución. (Devuelvo $\infty$)
+\item Si $i$ es el último rojo, o si es posible que $i$ sea color rojo (pues no rompe la propiedad) entonces la solución es la misma que la solución hasta $i-1$ siendo que $i$ es el último rojo. Es decir, es igual a DP[$i-1$][$i$][$ua$]
+\item Si no era posible que $i$ sea rojo, entonces no hay solucion para este caso. (Devuelvo $\infty$)
+\end{enumerate} 
+
+- \textbf{Pinto $i$ de azul}:  Análogo al caso de pintar con rojo  \\
+
+Cuando termina la iteración, DP[$i$][$ur$][$ua$] contiene el mínimo de los tres casos. En todos los cosas, sé que el caso óptimo anterior que utilizo para calcular la solución actual ya esta calculado porque los voy calculando en orden. \\
+
+La solución total del problema, es el mínimo valor hasta $i = n$ considerando todas las combinaciones de $ur$ y $ua$.
+
 \subsection{Pseudocódigo bottomup}
 
 
 \subsection{Complejidad}
 
+sarsa sarasa es $O(n^3)$
