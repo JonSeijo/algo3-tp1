@@ -27,7 +27,7 @@ tipo_bottomup = "bottomup"
 
 repes = 20
 cota_valor_maximo = 1000000
-n_maximo_naive = 15
+n_maximo_naive = 16
 n_maximo_poda = 42 # Con 38 tarda 22 segundos
 n_maximo_topdown = 95 # Con 100 tarda 1 minuto
 n_maximo_bottomup = 145 # 145 en 154 segundos
