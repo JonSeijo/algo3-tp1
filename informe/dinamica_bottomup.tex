@@ -32,6 +32,78 @@ La solución total del problema, es el mínimo valor hasta $i = n$ considerando 
 \subsection{Pseudocódigo bottomup}
 
 
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{Resolver BottomUp}{secuencia(int) $A$}
+  \State Matriz3 $DP \gets$ Matriz3($n$)  \Comment Creo Matrix de tres dimesiones de tamaño n 
+  \State DP[$0$][$ur$][$ua$] $\gets 0$  \Comment Lleno con $0$ cuando $i = 0$ \\
+
+    \For {$ultRojo \in [0..n]$}
+        \For {$ultAzul \in [0..n]$}
+            \For {$i \in [1..n]$} \\
+
+                \State $minNada \gets$ BottomupNada($i$, $ur$, $ua$)
+                \State $minRojo \gets$ BottomupRojo($i$, $ur$, $ua$)
+                \State $minAzul \gets$ BottomupAzul($i$, $ur$, $ua$) \\  
+
+                \State DP[$i$][$ur$][$ua$] $\gets$ Min($minNada$, $minRojo$, $minAzul$)
+            
+            \EndFor
+        \EndFor
+    \EndFor \\
+
+    \State return Min(DP[$n$][$ur$][$ua$] $\forall ur, ua$)
+
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{BottomupNada}{int $actual$, int $ur$, int $ua$}    
+    \State return $1 +$ DP[$actual-1$][$ur$][$ua$];
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{BottomupRojo}{int $actual$, int $ur$, int $ua$}    
+
+    \State bool $esUltimoRojo \gets((actual = ur) \land (actual \neq ua))$ 
+    \State bool $cumplePropiedad \gets((actual < ur) \land (A[actual] < A[ur]))$  \\
+
+    \If{$esUltimoRojo \lor cumplePropiedad$}
+        \State return DP[$actual-1$][$actual$][$ua$]
+    \Else
+        \State return $\infty$
+    \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Procedure{BottomupAzul}{int $actual$, int $ur$, int $ua$}    
+
+    \State bool $esUltimoAzul \gets((actual = ua) \land (actual \neq ur))$ 
+    \State bool $cumplePropiedad \gets((actual < ua) \land (A[actual] > A[ua]))$  \\
+
+    \If{$esUltimoAzul \lor cumplePropiedad$}
+        \State return DP[$actual-1$][$ur$][$actual$]
+    \Else
+        \State return $\infty$
+    \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
 \subsection{Complejidad}
 
 sarsa sarasa es $O(n^3)$
