@@ -108,7 +108,5 @@ int resolver_dp_topdown(int n, const std::vector<int> &numeros) {
         }
     }
 
-    std::cout << "CANTIDAD DE ACCESOS A DP: " << contador << "\n";
-
     return min_abs;
 }
