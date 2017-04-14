@@ -27,10 +27,10 @@ tipo_bottomup = "bottomup"
 
 repes = 20
 cota_valor_maximo = 1000000
-n_maximo_naive = 16
-n_maximo_poda = 42 # Con 38 tarda 22 segundos
-n_maximo_topdown = 95 # Con 100 tarda 1 minuto
-n_maximo_bottomup = 145 # 145 en 154 segundos
+n_maximo_naive = 15
+n_maximo_poda = 40 # Con 38 tarda 22 segundos
+n_maximo_topdown = 90 # Con 100 tarda 1 minuto
+n_maximo_bottomup = 140 # 145 en 154 segundos
 
 def args_lista_random(tipo, n):
     return [ejecutable, tipo, str(n)] + [str(random.randrange(1, cota_valor_maximo+1)) for _ in range(n)]
@@ -56,7 +56,7 @@ def exp_random(tipo, archivo, tamMaximo):
             print("", file=f)
 
 def args_lista_creciente(tipo, n):
-    return [ejecutable, tipo, str(n)] + [i for i in range(n)]
+    return [ejecutable, tipo, str(n)] + [str(i) for i in range(n)]
 
 
 def exp_creciente(tipo, archivo, tamMaximo):
@@ -81,7 +81,7 @@ def exp_creciente(tipo, archivo, tamMaximo):
 
 
 def args_lista_decreciente(tipo, n):
-    return [ejecutable, tipo, str(n)] + [n-i for i in range(n)]
+    return [ejecutable, tipo, str(n)] + [str(n-i) for i in range(n)]
 
 
 def exp_decreciente(tipo, archivo, tamMaximo):
@@ -107,7 +107,7 @@ def exp_decreciente(tipo, archivo, tamMaximo):
 
 
 def args_lista_iguales(tipo, n):
-    return [ejecutable, tipo, str(n)] + [1 for i in range(n)]
+    return [ejecutable, tipo, str(n)] + ["1" for i in range(n)]
 
 
 def exp_iguales(tipo, archivo, tamMaximo):
