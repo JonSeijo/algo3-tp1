@@ -3,19 +3,19 @@ int topdown_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int
 int topdown_caso_azul(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);
 int topdown_caso_nada(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua);
 
-int contador = 0;
-
 
 int topdown_sol(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int ua) {
+    // Caso base
     if (i == -1) {
         return 0;
     }
 
+    // Si ya fue calculado, lo devuelvo
     if (DP[i][ur][ua] != -1) {
-        contador++;
         return DP[i][ur][ua];
     }
 
+    // Guardo el resultado y lo devuelvo
     return DP[i][ur][ua] = min3(
         topdown_caso_nada(DP, A, i, ur, ua),
         topdown_caso_rojo(DP, A, i, ur, ua),
@@ -95,16 +95,17 @@ int topdown_caso_nada(Matriz3 &DP, const std::vector<int> &A, int i, int ur, int
 int resolver_dp_topdown(int n, const std::vector<int> &numeros) {
     Matriz3 DP;
     DP.resize(0);
+    // Le doy tamaño n^3 a la matriz y coloco -1 en sus elementos  
     DP.resize(n+1, std::vector<std::vector<int> >(n+1, std::vector<int>(n+1, -1)));
 
     int min_abs = INFINITO;
 
+    // Calculo la solucion para toda combinacion de ultimo rojo y ultimo azul.
+    // Me quedo con el minimo de todas ellas
     for (int ur = 0; ur <= n; ur++) {
         for (int ua = 0; ua <= n; ua++) {
-            // if (ur != ua) {
-                int solu = topdown_sol(DP, numeros, n-1, ur, ua);
-                min_abs = std::min(min_abs, solu);
-            // }
+            int solu = topdown_sol(DP, numeros, n-1, ur, ua);
+            min_abs = std::min(min_abs, solu);
         }
     }
 

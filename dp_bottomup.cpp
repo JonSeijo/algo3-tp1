@@ -39,12 +39,14 @@ int resolver_dp_bottomup(int n, const std::vector<int> &A) {
     DP.resize(0);
     DP.resize(n+2, std::vector<std::vector<int> > (n+2, std::vector<int>(n+2, INFINITO)));
 
+    // Caso base cuando i es 0
     for (int ur = 0; ur <= n+1; ur++) {
         for (int ua = 0; ua <= n+1; ua++) {
             DP[0][ur][ua] = 0;  // caso base para terminar la suma
         }        
     }
 
+    // Caso base cuando el ultimo rojo y el ultimo azul son el mismo
     for (int r = 0; r <= n+1; r++) {
         for (int i = 1; i <= n+1; i++) {
             DP[i][r][r] = INFINITO;
@@ -53,6 +55,7 @@ int resolver_dp_bottomup(int n, const std::vector<int> &A) {
 
     int min_abs = INFINITO;
 
+    // Lleno la matriz con los resultados, en orden
     for (int ur = 1; ur <= n+1; ur++) {
         for (int ua = 1; ua <= n+1; ua++) {
             for (int i = 1; i <= n; i++) {
@@ -66,7 +69,7 @@ int resolver_dp_bottomup(int n, const std::vector<int> &A) {
         }
     }
 
-    // Eventualmente extraer a  Matriz3::min(int n) -> int 
+    // Devuelvo el minimo de todas las combinaciones para i = n
     for (int ur = 0; ur <= n+1; ur++) {
         for (int ua = 0; ua <= n+1; ua++) {
             int rta = DP[n][ur][ua];
@@ -74,6 +77,5 @@ int resolver_dp_bottomup(int n, const std::vector<int> &A) {
         }
     }
 
-    // debug2(n);
     return min_abs;
 }
