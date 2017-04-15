@@ -98,11 +98,21 @@ De esta forma, los resultados son calculados una única vez. La respuesta final 
 
 \subsection{Complejidad}
 
-Se quiere calcular la complejidad de $Resolver topdown$. \\
+Se quiere calcular la complejidad de \textit{Resolver TopDown}. \\
 
-Al principio se crea una matriz de tres dimensiones llen con $-1$, de tamaño $n$ por cada lado. Esto tiene un costo de $O(n^3)$.
+Al principio se crea una matriz de tres dimensiones llena con $-1$, de tamaño $n$ por cada lado. Esto tiene un costo de $O(n^3)$. \\
 
-Para cada una de las $n^2$ combinaciones de $ur$ y $ua$, se llama a Solucion(). Considerando parámetros fijos en Solución(), tenemos dos posibilidades. Si el valor ya fue calculado, se devuelve el valor en $O(1)$. Si no fue calculado, se hacen $O(1)$ llamados recursivos. Considerando estos llamados recursivos .. 
+Para calcular Solución($i$, $ur$, $ua$) puede verse que se llama recursivamente a otras instancias de \textit{Solución}. Esto hace parecer que la complejidad total es muy grande, pero veamos que no es así considerando el problema desde una perspectiva mas alta. \\
+
+Notemos que cada \textit{Solución} es calculada una única vez. Esto es así porque vamos guardando las soluciones en una matriz, por lo que la próxima vez que quiera esa solución particular, ya voy a tenerlo en $O(1)$. Entonces solo considero el costo de las soluciones únicas. \\
+
+Supongamos que para una instancia particular se realizan $m$ llamados recursivos, \textit{parecería} entonces que resolver una instancia cuesta $m$. Pero si miramos con atención, el algoritmo esta guardando las respuestas a los $m$ subproblemas, por lo que en realidad estamos calculando $m$ soluciones con $m$ llamados recursivos. Además de los llamados recursivos, las otras operaciones son $O(1)$ comparaciones y asignaciones. Así, el costo de calcular $m$ soluciones es $O(m)$. Vimos entonces que \textit{Solución} tiene un costo amortizado. \\
+
+La cantidad máxima de diferentes combinaciones de parámetros es $n^3$. El costo de calcular las $n^3$ Soluciones es $O(n^3)$ si consideramos las observaciones anteriores.\\
+
+También podemos pensar que, al igual que en \textit{BottomUp}, lo que estamos haciendo es llenar la matriz $DP$ usando en $O(1)$ los valores ya calculados, solo que esta vez de forma recursiva. Hay $n^3$ lugares que llenar, por lo que el costo de llenar es $O(n^3)$. \\
 
 
-CREO QUE ME CONVIENE EXPLICAR PRIMERO BOTTOM UP PORQUE ES MUCHISIMO MAS FACIL ANALIZAR LA COMPLEJIDAD AHI
+Al final del algoritmo, devolvemos el máximo en $O(n^2)$. El costo total es entonces:
+
+$$O(n^3) + O(n^3) + O(n^2) = O(n^3)$$
