@@ -29,7 +29,7 @@ repes = 20
 cota_valor_maximo = 1000000
 n_maximo_naive = 16 #16
 n_maximo_poda = 40 # Con 38 tarda 22 segundos
-n_maximo_topdown = 105 # Con 100 tarda 1 minuto
+n_maximo_topdown = 130 # Con 100 tarda 1 minuto
 n_maximo_bottomup = 150 # 145 en 154 segundos
 
 def args_lista_random(tipo, n):
@@ -141,8 +141,8 @@ if __name__ == '__main__':
     parser.add_argument("-poda_random", help="Poda con listas random."
                 + " Tamaño maximo: " + str(n_maximo_poda), action='store_true')
 
-    parser.add_argument("-topdown_random", help="Topdown con listas random."
-             + " Tamaño maximo: " + str(n_maximo_topdown), action='store_true')
+    # parser.add_argument("-topdown_random", help="Topdown con listas random."
+    #          + " Tamaño maximo: " + str(n_maximo_topdown), action='store_true')
 
     parser.add_argument("-bottomup_random", help="Bottomup con listas random."
              + " Tamaño maximo: " + str(n_maximo_bottomup), action='store_true')
@@ -154,6 +154,14 @@ if __name__ == '__main__':
     parser.add_argument("-decreciente", help="Todos las tecnicas con inputs decrecientes", action='store_true')
     
     parser.add_argument("-iguales", help="Todos las tecnicas con inputs iguales", action='store_true')
+    
+    parser.add_argument("-topdown_random", help="Todos las tecnicas con inputs randon", action='store_true')
+
+    parser.add_argument("-topdown_creciente", help="Todos las tecnicas con inputs crecientes", action='store_true')
+
+    parser.add_argument("-topdown_decreciente", help="Todos las tecnicas con inputs decrecientes", action='store_true')
+    
+    parser.add_argument("-topdown_iguales", help="Todos las tecnicas con inputs iguales", action='store_true')
 
     parser.add_argument("--repes", help="Cantidad de repeticiones", default=repes, type=int)
 
@@ -215,6 +223,18 @@ if __name__ == '__main__':
         print("Inicia: exp_topdown_random")
         start_time = time.time()
         exp_random(tipo_topdown, path_topdown + path_random, n_maximo_topdown)
+        print("--- %s seconds ---" % (time.time() - start_time))
+
+    if args.topdown_creciente:
+        print("Inicia: exp_topdown_creciente")
+        start_time = time.time()
+        exp_creciente(tipo_topdown, path_topdown + path_creciente, n_maximo_topdown)
+        print("--- %s seconds ---" % (time.time() - start_time))
+    
+    if args.topdown_iguales:
+        print("Inicia: exp_topdown_creciente")
+        start_time = time.time()
+        exp_iguales(tipo_topdown, path_topdown + path_iguales, n_maximo_topdown)
         print("--- %s seconds ---" % (time.time() - start_time))
 
     if args.bottomup_random:
