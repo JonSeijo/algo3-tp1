@@ -141,6 +141,8 @@ if __name__ == '__main__':
     parser.add_argument("-poda_random", help="Poda con listas random."
                 + " Tamaño maximo: " + str(n_maximo_poda), action='store_true')
 
+    parser.add_argument("-poda_iguales", help="Poda con listas iguales.", action='store_true')
+
     # parser.add_argument("-topdown_random", help="Topdown con listas random."
     #          + " Tamaño maximo: " + str(n_maximo_topdown), action='store_true')
 
@@ -217,6 +219,12 @@ if __name__ == '__main__':
         print("Inicia: exp_poda_random")
         start_time = time.time()
         exp_random(tipo_poda, path_poda + path_random, n_maximo_poda)
+        print("--- %s seconds ---" % (time.time() - start_time))
+
+    if args.poda_iguales:
+        print("Inicia: exp_poda_iguales")
+        start_time = time.time()
+        exp_iguales(tipo_poda, path_poda + path_iguales, 140)
         print("--- %s seconds ---" % (time.time() - start_time))
 
     if args.topdown_random:
