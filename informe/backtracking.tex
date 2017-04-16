@@ -83,11 +83,9 @@ Para resolver el problema original, llamo a la función con los siguientes pará
 
 \subsection{Complejidad}
 
-El algoritmo presentado visita todas las posibles combinaciones de colores. Cada uno de los elementos tiene tres posibilidades, y como hay $n$ elementos, la cantidad de combinaciones posibles es $3^{n}$. Por lo tanto, visitar todas las posibilidades es $O(3^{n})$.
+El algoritmo presentado visita todas las posibles combinaciones de colores. Cada uno de los elementos tiene tres posibilidades, y como hay $n$ elementos, la cantidad de combinaciones posibles es $3^{n}$. Por lo tanto, visitar todas las posibilidades es $O(3^{n})$. Además, para cada combinación, se revisa en $O(n)$ si es una secuencia valida o no. Por lo tanto, la complejidad total del algoritmo es $O(n * 3^{n})$ \\
 
-Además, para cada combinación, se revisa en $O(n)$ si es una secuencia valida o no. Por lo tanto, la complejidad total del algoritmo es $O(n * 3^{n})$ \\
-
-Otra forma de verlo es pensando en el arbol de recursión que se va formando al llamar a la función. Cada nivel representa al elemento iésimo de $A$, y cada nodo representa el color del elemento. De todo nodo se desprenden tres posibilidades hasta llegar al nivel $n$. Al llegar a una hoja, se decide si la secuencia \textit{hasta esa hoja} es válida, en tiempo lineal. \\
+Otra forma de verlo es pensando en el arbol de recursión que se va formando al llamar a la función. Cada nivel representa al elemento iésimo de $A$, y cada nodo representa el color del elemento. De todo nodo se desprenden tres posibilidades hasta llegar al nivel $n$. Al llegar a una hoja, se decide si la secuencia \textit{hasta esa hoja} es válida, en tiempo lineal. Cada hoja representa una combinación posible de colores. No puede haber dos hojas iguales, pues tomar caminos diferentes en el árbol significa pintar (o no) cada elemento de diferente color. \\
 
 Sabiendo que en un árbol ternario el nivel \textbf{i} tiene $3^{i}$ nodos, y sabiendo que el arbol tiene $n$ niveles, la cantidad de nodos que se visitan es: \\
 
@@ -151,12 +149,12 @@ Para resolver el problema original, llamo a la funcion con los siguientes parám
 \begin{algorithm}[H]
 \begin{algorithmic}
 \Procedure{Resolver poda}{secuencia(int) $A$}
-  \State backtrack($0$, $n$, $n$, $0$)
+  \State backtrack($0$, $n$, $n$, $0$) \Comment $ultRojo = n$ significa que no hay ningún rojo aún. Ídem para azul.
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
 
-Como detalle de implementación, cuando el último rojo (o azul) es $n$, significa que no hay ningún rojo (o azul) aún, porque los índices del arreglo comienzan en cero.
+% Como detalle de implementación, cuando el último rojo (o azul) es $n$, significa que no hay ningún rojo (o azul) aún, porque los índices del arreglo comienzan en cero.
 
 \subsection{Complejidad con poda}
 
