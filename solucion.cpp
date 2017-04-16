@@ -14,8 +14,8 @@ int main(int argc, char *argv[]) {
         numeros[i] = std::stoi(dato);
     }
 
-    // std::cout << "Solucion bt naive: " << resolver_backtracking_naive(n, numeros) << "\n";
-    // std::cout << "Solucion bt poda: " << resolver_backtracking_poda(n, numeros) << "\n";
+    std::cout << "Solucion bt naive: " << resolver_backtracking_naive(n, numeros) << "\n";
+    std::cout << "Solucion bt poda: " << resolver_backtracking_poda(n, numeros) << "\n";
     std::cout << "Solucion DP topdown: " << resolver_dp_topdown(n, numeros) << "\n";
     std::cout << "Solucion DP bottomup: " << resolver_dp_bottomup(n, numeros) << "\n";
     return 0;
