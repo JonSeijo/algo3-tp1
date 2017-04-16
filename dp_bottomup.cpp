@@ -7,7 +7,7 @@ int bottomup_caso_rojo(Matriz3 &DP, const std::vector<int> &A, int i, int ur, in
     int min_sinpintar = INFINITO; // Resultado es infinito si no pude pintar el actual de rojo.
     
     bool es_ultimo_rojo = (i == ur) && (i != ua);
-    bool cumple_propiedad = (i < ur) && (A[i-1] < A[ur-1]); //(x -> A[x-1] pues indices en A empiezan en 0)
+    bool cumple_propiedad = (i != ua) && (i < ur) && (A[i-1] < A[ur-1]); //(x -> A[x-1] pues indices en A empiezan en 0)
     
     // Si es posible pintar el actual de rojo, 
     // entonces el minimo_sinpintar es la solucion hasta el anterior dado que el actual es ultimo rojo.
@@ -22,7 +22,7 @@ int bottomup_caso_azul(Matriz3 &DP, const std::vector<int> &A, int i, int ur, in
     int min_sinpintar = INFINITO; // Resultado es infinito si no pude pintar el acual de azul.
     
     bool es_ultimo_azul = (i == ua) && (i != ur);
-    bool cumple_propiedad = (i < ua) && (A[i-1] > A[ua-1]); //(x -> A[x-1] pues indices en A empiezan en 0)
+    bool cumple_propiedad = (i != ur) && (i < ua) && (A[i-1] > A[ua-1]); //(x -> A[x-1] pues indices en A empiezan en 0)
     
     // Si es posible pintar el actual de azul, 
     // entonces el minimo_sinpintar es la solucion hasta el anterior dado que el actual es el ultimo azul

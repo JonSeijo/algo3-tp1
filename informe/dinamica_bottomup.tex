@@ -72,7 +72,7 @@ La solución total del problema, es el mínimo valor hasta $i = n$ considerando 
 \Procedure{BottomupRojo}{int $actual$, int $ur$, int $ua$}    
 
     \State bool $esUltimoRojo \gets((actual = ur) \land (actual \neq ua))$ 
-    \State bool $cumplePropiedad \gets((actual < ur) \land (A[actual] < A[ur]))$  \\
+    \State bool $cumplePropiedad \gets((actual \neq ua) \land (actual < ur) \land (A[actual] < A[ur]))$  \\
 
     \If{$esUltimoRojo \lor cumplePropiedad$}
         \State return DP[$actual-1$][$actual$][$ua$]
@@ -89,7 +89,7 @@ La solución total del problema, es el mínimo valor hasta $i = n$ considerando 
 \Procedure{BottomupAzul}{int $actual$, int $ur$, int $ua$}    
 
     \State bool $esUltimoAzul \gets((actual = ua) \land (actual \neq ur))$ 
-    \State bool $cumplePropiedad \gets((actual < ua) \land (A[actual] > A[ua]))$  \\
+    \State bool $cumplePropiedad \gets((actual \neq ur) \land (actual < ua) \land (A[actual] > A[ua]))$  \\
 
     \If{$esUltimoAzul \lor cumplePropiedad$}
         \State return DP[$actual-1$][$ur$][$actual$]
