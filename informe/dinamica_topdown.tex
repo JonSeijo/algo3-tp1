@@ -1,4 +1,4 @@
-\subsection{Solución topdown}
+\subsection{Solución TopDown}
 Muy similar al enfoque BottomUp, pero calculando de forma recursiva. En vez de comenzar desde $i = 0$ hacia adelante, comienzo desde $i = n$ hacia atrás. \\
 
 Solución($i$, $ur$, $ua$) devuelve la mínima cantidad sin pintar que pueden usarse hasta $i$, siendo $ur$ el último rojo y siendo $ua$ el último azul. Las soluciones se van a ir calculando recursivamente (pues cada solución necesita de la anterior) y voy almacenando los resultados en la matriz DP. \\
@@ -6,7 +6,7 @@ Solución($i$, $ur$, $ua$) devuelve la mínima cantidad sin pintar que pueden us
 De esta forma, los resultados son calculados una única vez. La respuesta final es el mínimo de todas las combinaciones de $ur$ y $ua$ para $i = n$. \\
 
 
-\subsection{Pseudocódigo topdown}
+\subsection{Pseudocódigo TopDown}
 
 \begin{algorithm}[H]
 \begin{algorithmic}
