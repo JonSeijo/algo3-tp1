@@ -105,7 +105,5 @@ La solución total del problema, es el mínimo valor hasta $i = n$ considerando 
 
 Crear la Matriz de tres dimensiones de tamaño $n$, cuesta $O(n^3)$. Llenar los casos bases cuesta $O(n^2)$.
 Luego aparecen tres ciclos anidados, cada uno de ellos de tamaño $n$. En el cuerpo se ejecutan solo $O(1)$ comparaciones, asignaciones y accesos a arreglo. El costo de los tres ciclos principales es $O(n^3)$ 
-Se devuelve el mínimo de las $n^2$ combinaciones de $ur$ y $ua$, en $O(n^2)$. 
-
-El costo total es: 
+Se devuelve el mínimo de las $n^2$ combinaciones de $ur$ y $ua$, en $O(n^2)$. El costo total es: 
 $$O(n^3) + O(n^2) + O(n^3) + O(n^2) = O(n^3)$$

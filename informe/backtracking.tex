@@ -162,4 +162,6 @@ Como detalle de implementación, cuando el último rojo (o azul) es $n$, signifi
 
 Haciendo un análisis similar al del algoritmo naive, pensando en el arbol de recursión, tenemos que como cota superior se visitan todos los nodos del árbol. La validez de la secuencia se comprueba a medida que se desciende en la recursión, pues no se entra al siguiente paso si la propiedad de los colores no se cumple. Además, se va contando la cantidad de elementos sin pintar a medida que se eligen colores, por lo que tampoco se usa tiempo en eso. \\
 
-Como todo el costo se encuentra en la cantidad de nodos que se visita, y como la cantidad máxima de nodos es $O(3^{n})$, el costo de obtener la respuesta usando este algoritmo con poda en peor caso es $O(3^n)$, mejorando la complejidad del anterior.
+Como todo el costo se encuentra en la cantidad de nodos que se visita, y como la cantidad máxima de nodos es $O(3^{n})$, el costo de obtener la respuesta usando este algoritmo con poda en peor caso es $O(3^n)$, mejorando la complejidad del anterior. \\ 
+
+En la seccion de experimentación, podrá verse como tambíen se produce una \textbf{gran} mejora para los mejores casos. \\ 

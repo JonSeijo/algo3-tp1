@@ -27,9 +27,7 @@ Era esperable que el algoritmo con \textit{poda} sea mucho mas eficiente que el 
 %   \includegraphics[width=0.75\textwidth]{informe/img/experimentos/dp-random.png} \\
 % }
 
-Para instancias de tamaño $\leq 40$ \textit{BottomUp} y \textit{TopDown} se comportan de manera muy similar, pero para tamaños mas grandes las curvas comienzan a separarse. \\
-
-En el análisis teórico, tanto \textit{TopDown} como \textit{BottomUp} tenían la misma complejidad. Lo que podemos deducir de estas mediciones es que \textit{TopDown} tiene una constante oculta mas elevada. Esto es razonable ya que en esta técnica se realizan llamados recursivos y en \textit{BottomUp} no. 
+Para instancias de tamaño $\leq 40$ \textit{BottomUp} y \textit{TopDown} se comportan de manera muy similar, pero para tamaños mas grandes las curvas comienzan a separarse. En el análisis teórico, tanto \textit{TopDown} como \textit{BottomUp} tenían la misma complejidad. Lo que podemos deducir de estas mediciones es que \textit{TopDown} tiene una constante oculta mas elevada. Esto es razonable ya que en esta técnica se realizan llamados recursivos y en \textit{BottomUp} no. 
 
 \subsection{Elementos iguales}
 
@@ -49,14 +47,27 @@ En el gráfico podemos ver cómo el \textit{backtracking con poda} es el que pro
 
 \subsection{Elementos crecientes}
 
-En una secuencia donde los elementos son \textit{estrictamente crecientes} la solución óptima se consigue pintando todos los elementos del mismo color, obteniendo el mínimo sin pintar en 0. \\
+En una secuencia donde los elementos son \textit{estrictamente crecientes} la solución óptima puede conseguirse pintando todos los elementos del mismo color, obteniendo el mínimo sin pintar en 0. \\
 
 El algoritmo \textit{naive} de backtracking sigue produciendo los peores resultados, ya que siempre revisa todas las combinaciones posibles. Al ser tiempos tan malos, no permiten ver las diferencias con las demás técnicas. Es por esto que el gráfico lo muestro en \textbf{escala logarítmica} en eje $y$.\\
 
-Los algoritmos que usan \textit{programación dinámica} siguen necesitando $O(n^3)$ tiempo para crear la matriz donde van a guardarse los datos. 
+Los algoritmos que usan \textit{programación dinámica} siguen necesitando $O(n^3)$ tiempo para crear la matriz donde van a guardarse los datos, y como en los casos anteriores, \textit{BottomUp} es mas rápido que \textit{TopDown}. \\
 
-(Es posible que las irregularidades de la curva se deban a que los tiempos sean demasiado pequeños para ser medidos con precisión)
+Lo interesante lo vemos con el algoritmo \textit{backtracking con poda}, que puede apreciarse que es mucho mas eficiente que todos los demas. (Notar que es aproximadamente el doble de rápido que en los casos donde la secuencia esta formada por números iguales) \\
+
+Esto se debe a que al ser creciente, las ramas con color azul se eliminan rápidamente, y a que una vez encontrado el mínimo valor (el cero) ya no se entrará por los casos donde no se pinta algún elemento. \\
 
 {\centering
   \includegraphics[width=0.75\textwidth]{informe/img/experimentos/todos-creciente-logaritmica.png} \\
 }
+
+% NO SE SI NECESARIA
+\subsection{Conclusión}
+
+De las técnicas usadas para resolver el problema, en el \textbf{caso general} las soluciones con \textit{programación dinámica} son exponencialemte mejores. \\
+
+Pudimos ver que en \textbf{algunos casos particulares}, por ejemplo cuando la secuencia está formada por los mismos elementos o cuando es creciente (o decreciente), el algoritmo de \textit{backtracking con poda} es el mas eficiente.  \\
+
+Otra gran ventaja de las soluciones \textit{dinámicas}, es que el caso general puede resolverse para tamaños de \textbf{cientos} de elementos, mientras que el algoritmo de \textit{backtracking con poda} es inusable para $n > 60$.  \\
+
+El algoritmo de \textit{backtracking naive} no es bueno en \textbf{ningún} caso, y para $n > 20$ es imposible de utilizar. \\
