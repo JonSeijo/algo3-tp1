@@ -1,5 +1,5 @@
 \subsection{Aclaraciones}
-En todos lo experimentos, para cada tamaño de secuencia se corrió el programa 50 veces, guardando el tiempo de cada ejecución. Para elegir el valor mas representativo de la muestra tomo la \textbf{media} de cada tamaño. La media es lo que puede verse en el gráfico. \\
+En todos lo experimentos, para cada tamaño de secuencia se corrió el programa 50 veces, guardando el tiempo de cada ejecución. Para elegir un valor representativo de la muestra tomo la \textbf{media} de cada tamaño. (También llamado \textit{promedio}).
 
 La generación de secuencias aleatorias de tamaño $n$ fue hecho en Python3 usando: 
 \begin{center}
@@ -20,9 +20,12 @@ Podemos observar una clara diferencia entre los algoritmos de backtracking y los
   \includegraphics[width=0.75\textwidth]{informe/img/experimentos/todos-random.png} \\
 } 
 
-Era esperable que el algoritmo con \textit{poda} sea mucho mas eficiente que el algoritmo \textit{naive}, pero veamos que pasa con los de programación dinámica: \\
+Era esperable que el algoritmo con \textit{poda} sea mucho mas eficiente que el algoritmo \textit{naive}, pero veamos mas de cerca que pasa con los de programación dinámica: \\
 
 {\centering
-  \includegraphics[width=0.70\textwidth]{informe/img/experimentos/dp-random.png} \\
+  \includegraphics[width=0.75\textwidth]{informe/img/experimentos/dp-random.png} \\
 }
-\hspace{1\textwidth} \\
+
+Para instancias de tamaño $\leq 40$ \textit{BottomUp} y \textit{TopDown} se comportan de manera muy similar, pero para tamaños mas grandes las curvas comienzan a separarse. \\
+
+En el análisis teórico, tanto \textit{TopDown} como \textit{BottomUp} tenían la misma complejidad. Lo que podemos deducir de estas mediciones es que \textit{TopDown} tiene una constante oculta mas elevada. Esto es razonable ya que en esta técnica se realizan llamados recursivos y en \textit{BottomUp} no.
