@@ -224,7 +224,7 @@ if __name__ == '__main__':
     if args.poda_iguales:
         print("Inicia: exp_poda_iguales")
         start_time = time.time()
-        exp_iguales(tipo_poda, path_poda + path_iguales, 140)
+        exp_iguales(tipo_poda, path_poda + path_iguales, 190)
         print("--- %s seconds ---" % (time.time() - start_time))
 
     if args.topdown_random:

@@ -22,12 +22,27 @@ Podemos observar una clara diferencia entre los algoritmos de backtracking y los
 
 Era esperable que el algoritmo con \textit{poda} sea mucho mas eficiente que el algoritmo \textit{naive}, pero veamos mas de cerca que pasa con los de programación dinámica: \\
 
-{\centering
-  \includegraphics[width=0.75\textwidth]{informe/img/experimentos/dp-random.png} \\
-}
+% ESTE PODRIA SACARSE PARA AHORRAR LUGAR ... 
+% {\centering
+%   \includegraphics[width=0.75\textwidth]{informe/img/experimentos/dp-random.png} \\
+% }
 
 Para instancias de tamaño $\leq 40$ \textit{BottomUp} y \textit{TopDown} se comportan de manera muy similar, pero para tamaños mas grandes las curvas comienzan a separarse. \\
 
-En el análisis teórico, tanto \textit{TopDown} como \textit{BottomUp} tenían la misma complejidad. Lo que podemos deducir de estas mediciones es que \textit{TopDown} tiene una constante oculta mas elevada. Esto es razonable ya que en esta técnica se realizan llamados recursivos y en \textit{BottomUp} no. \\
+En el análisis teórico, tanto \textit{TopDown} como \textit{BottomUp} tenían la misma complejidad. Lo que podemos deducir de estas mediciones es que \textit{TopDown} tiene una constante oculta mas elevada. Esto es razonable ya que en esta técnica se realizan llamados recursivos y en \textit{BottomUp} no. 
 
-Veamos que pasa con algunos casos particulares de instancias
+\subsection{Elementos iguales}
+
+En una secuencia donde todos los elementos son iguales, como máximo pueden pintarse un elemento de rojo y otro de azul, pero no más que esto ya que no es posible encontrar secuencias \textit{estrictamente} crecientes o decrecientes. Podríamos considerar esto un mejor caso, ya que en rasgos generales, las técnicas que revisan la validez de la secuencia a medida que la construyen solo podrían ''entrar'' en la rama donde los elementos no se pintan. \\
+
+El algoritmo de \textit{backtracking naive} tiene tiempos tan malos que no permiten ver con claridad las diferencias entre las otras técnicas, por lo que el gráfico está en \textbf{escala logarítmica} en el eje $y$. \\
+
+En el gráfico podemos ver cómo el \textit{backtracking con poda} es el que produce los resultados mas eficientes. Esto es razonable si consideramos la observación del primer párrafo, y si tenemos en cuenta que los algoritmos de \textit{programación dinámica} siempre crean una matriz de tres dimensiones de tamaño $n^3$, sin importar el contenido de la secuencia. \\
+
+% {\centering
+%   \includegraphics[width=0.75\textwidth]{informe/img/experimentos/todos-iguales.png} \\
+% }
+
+{\centering
+  \includegraphics[width=0.75\textwidth]{informe/img/experimentos/todos-iguales-logaritmica.png} \\
+}
