@@ -1,15 +1,55 @@
 # algo3-tp1
 Tp1 de algo3
 
-## WORKFLOW (wip)
+## NOTA:
 
-Aca un breve descripcion del workflow
+Puede verse el informe compilado en informe/informe.pdf
+
+
+## INFORME
+
+Hecho con latex. Para compilar y ver:
+
+```
+python makepdf.py
+```
+
+Puede especificarse con el parametro ```--p=5``` el numero de pagina en la cual el pdf se va a abrir. HIPER UTIL POSTA!!
+
+Todos los archivos .tex del informe estan en /informe/
+
+Puede verse una version ya compilada en informe/informe.pdf
+
+
+
+## DATOS
+
+La generacion de datos esta hecha con algunas herramientas de python,
+Donde se exportaran los resultados a un .csv
+
+Todo esto esta muy verde, ver las clases de labo para darse una idea de como resolver
+
+La idea es que una vez tengo todos los datos en el .csv,
+Automatizo los experimentos para que se corran de ese .csv, sea cuales sean.
+En caso de modificar los algoritmos (ergo los datos) lo unico que tengo que hacer
+es correr la herramienta graficadora una unica vez
+
+```
+python crearDatos.py -naive_random -naive_creciente ....
+```
+
+ver con -h para un listado con las muestras posibles.
+
+
+## GRAFICOS
+
+Creados con python usando pandas.
+Originalmente los escribi para jupyter notebook, pero el codigo utilizado se encuentra en experimentos/rejunte.py
 
 
 ## PROGRAMAS
 
 Cada algoritmo para resolver un problema se encuentra en su propio .cpp
-Todos leen por consola una serie de argumentos
 
 Para ver solo la solucion del problema (para todos los algoritmos) compilar con
 ```
@@ -28,28 +68,8 @@ make tiempos
 y ejecutar con ./tiempos
 
 
-## DATOS (WIP):
+Tambien pueden encontrarse los archivos listos para la entrega como ejX.cpp, donde X es el numero de ejercicio
 
-La generacion de datos esta hecha con algunas herramientas de python,
-Donde se exportaran los resultados a un .csv
-
-Todo esto esta muy verde, ver las clases de labo para darse una idea de como resolver
-
-La idea es que una vez tengo todos los datos en el .csv,
-Automatizo los experimentos para que se corran de ese .csv, sea cuales sean.
-En caso de modificar los algoritmos (ergo los datos) lo unico que tengo que hacer
-es correr la herramienta graficadora una unica vez
-
-
-## INFORME:
-
-Para compilar y ver el informe (incluso desde el directorio principal)
-
-```
-python makepdf.py
-```
-
-Todos los archivos .tex del informe estan en /informe/
 
 
 # TODO
@@ -87,25 +107,25 @@ Todos los archivos .tex del informe estan en /informe/
 
 [-] Hacer testeos mas complejos !
 
-[-] Ver como analizar las complejidades (Es incorrecto hacer una comparacion tiempos/curvas)
+[X] Ver como analizar las complejidades (Es incorrecto hacer una comparacion tiempos/curvas)
 
-[-] Armar introduccion/explicacion del problema
+[X] Armar introduccion/explicacion del problema
 
-[-] Pensar mas ejemplos para agregar
+[X] Pensar mas ejemplos para agregar
 
-[-] Agregar imagen a la caratula
+[X] Agregar imagen a la caratula
 
-[-] Hacer analisis de complejidades
+[X] Hacer analisis de complejidades
 
-[-] ¿Es posible que el backtracking de poda no sea exponencial en mejor caso? Analizar eso
+[X] ¿Es posible que el backtracking de poda no sea exponencial en mejor caso? Analizar eso
 
 [X] Resolver usando DP bottomup
 
 [X] Resolver usando DP topdown
 
-[-] Usar diferentes tablas para el topdown y el bottom up, para no pagar el costo de borrar una en la otra version 
+[X] Usar diferentes tablas para el topdown y el bottom up, para no pagar el costo de borrar una en la otra version
 
-[-] Armar ejecutables de ejX para cumplir consigna de tp.
+[X] Armar ejecutables de ejX para cumplir consigna de tp.
 (Basicamente quiero poder hacer "make ej1" y "./ej1 [params]" )
 
-[-] Cota superior del informe: 10 paginas
+[X] Cota superior del informe: 10 paginas
